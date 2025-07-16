@@ -20,6 +20,8 @@ public class Insignia {
         return idInsignia;
     }
 
+    public Insignia() {}
+
     public void setIdInsignia(Integer idInsignia) {
         this.idInsignia = idInsignia;
     }

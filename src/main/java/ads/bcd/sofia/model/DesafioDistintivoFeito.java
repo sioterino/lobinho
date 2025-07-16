@@ -25,6 +25,8 @@ public class DesafioDistintivoFeito {
     @Column(nullable = false)
     private LocalDateTime dataFim;
 
+    public DesafioDistintivoFeito() {}
+
     public Integer getId() {
         return id;
     }

@@ -12,6 +12,8 @@ public class TipoSanguineo {
     @Column(nullable = false)
     private String tipo;
 
+    public TipoSanguineo() {}
+
     public Integer getIdTipoSanguineo() {
         return idTipoSanguineo;
     }

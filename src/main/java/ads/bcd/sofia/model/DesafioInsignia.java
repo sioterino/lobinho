@@ -20,6 +20,8 @@ public class DesafioInsignia {
     @OneToMany(mappedBy = "desafio", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<DesafioInsigniaFeita> completacoes;
 
+    public DesafioInsignia() {}
+
     public Integer getIdDesafio() {
         return idDesafio;
     }

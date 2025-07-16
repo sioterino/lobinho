@@ -22,6 +22,8 @@ public class Jovem {
     @Column(nullable = false)
     private String email;
 
+    public Jovem() {}
+
     @ManyToOne
     @JoinColumn(name = "idTipoSanguineo")
     private TipoSanguineo tipoSanguineo;

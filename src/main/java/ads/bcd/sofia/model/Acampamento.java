@@ -21,6 +21,8 @@ public class Acampamento {
     @OneToMany(mappedBy = "acampamento", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<NoiteAcampada> noitesAcampadas;
 
+    public Acampamento() {}
+
     public Integer getIdAcampamento() {
         return idAcampamento;
     }

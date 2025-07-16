@@ -17,6 +17,8 @@ public class Distintivo {
     @OneToMany(mappedBy = "distintivo", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<DesafioDistintivo> desafiosDistintivo;
 
+    public Distintivo() {}
+
     public Integer getIdDistintivo() {
         return idDistintivo;
     }

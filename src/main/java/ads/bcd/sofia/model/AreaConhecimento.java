@@ -17,6 +17,8 @@ public class AreaConhecimento {
     @OneToMany(mappedBy = "areaDeConhecimento", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Especialidade> especialidades;
 
+    public AreaConhecimento() {}
+
     public Integer getIdAreaDeConhecimento() {
         return idAreaDeConhecimento;
     }

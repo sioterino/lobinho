@@ -19,6 +19,8 @@ public class Vinculo {
     @JoinColumn(name = "idResponsavel", nullable = false)
     private Responsavel responsavel;
 
+    public Vinculo() {}
+
     public Integer getId() {
         return id;
     }

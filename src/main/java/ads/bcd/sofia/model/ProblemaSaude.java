@@ -14,6 +14,8 @@ public class ProblemaSaude {
 
     private String descricao;
 
+    public ProblemaSaude() {}
+
     public Integer getIdProblemaSaude() {
         return idProblemaSaude;
     }

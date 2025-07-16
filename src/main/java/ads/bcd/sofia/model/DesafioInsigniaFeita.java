@@ -8,11 +8,13 @@ import java.util.Objects;
 public class DesafioInsigniaFeita {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+
     @ManyToOne
     @JoinColumn(name = "idDesafio", nullable = false)
     private DesafioInsignia desafioInsignia;
 
-    @Id
     @ManyToOne
     @JoinColumn(name = "idJovem", nullable = false)
     private Jovem jovem;
@@ -20,7 +22,7 @@ public class DesafioInsigniaFeita {
     @Column(nullable = false)
     private LocalDateTime data;
 
-    // Getters and setters
+    public DesafioInsigniaFeita() {}
 
     public DesafioInsignia getDesafioInsignia() {
         return desafioInsignia;

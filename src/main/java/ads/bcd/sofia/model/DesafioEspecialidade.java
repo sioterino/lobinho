@@ -21,6 +21,8 @@ public class DesafioEspecialidade {
     @OneToMany(mappedBy = "desafioEspecialidade", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<DesafioEspecialidadeFeita> desafiosFeitos;
 
+    public DesafioEspecialidade() {}
+
     public Integer getIdDesafio() {
         return idDesafio;
     }

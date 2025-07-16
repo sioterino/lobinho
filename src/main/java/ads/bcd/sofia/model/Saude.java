@@ -17,6 +17,8 @@ public class Saude {
     @JoinColumn(name = "idProblemaSaude", nullable = false)
     private ProblemaSaude problemaSaude;
 
+    public Saude() {}
+
     public Integer getId() {
         return id;
     }

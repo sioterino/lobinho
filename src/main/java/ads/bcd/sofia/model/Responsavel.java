@@ -18,6 +18,8 @@ public class Responsavel {
     @Column(nullable = false)
     private String email;
 
+    public Responsavel() {}
+
     @OneToMany(mappedBy = "responsavel", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Vinculo> vinculos;
 
