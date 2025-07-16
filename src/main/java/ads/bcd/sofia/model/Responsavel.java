@@ -2,6 +2,7 @@ package ads.bcd.sofia.model;
 
 import jakarta.persistence.*;
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 public class Responsavel {
@@ -10,8 +11,11 @@ public class Responsavel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idResponsavel;
 
+    @Column(nullable = false)
     private String nome;
+    @Column(nullable = false)
     private String telefone;
+    @Column(nullable = false)
     private String email;
 
     @OneToMany(mappedBy = "responsavel", cascade = CascadeType.ALL, orphanRemoval = true)
@@ -56,4 +60,30 @@ public class Responsavel {
     public void setVinculos(List<Vinculo> vinculos) {
         this.vinculos = vinculos;
     }
+
+    @Override
+    public String toString() {
+        return "Responsavel{" +
+                "idResponsavel=" + idResponsavel +
+                ", nome='" + nome + '\'' +
+                ", telefone='" + telefone + '\'' +
+                ", email='" + email + '\'' +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Responsavel that = (Responsavel) o;
+
+        return Objects.equals(idResponsavel, that.idResponsavel);
+    }
+
+    @Override
+    public int hashCode() {
+        return idResponsavel != null ? idResponsavel.hashCode() : 0;
+    }
+
 }

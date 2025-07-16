@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 public class Jovem {
@@ -12,9 +13,13 @@ public class Jovem {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idJovem;
 
+    @Column(nullable = false)
     private String nome;
+    @Column(nullable = false)
     private LocalDateTime dataNascimento;
+    @Column(nullable = false)
     private String telefone;
+    @Column(nullable = false)
     private String email;
 
     @ManyToOne
@@ -37,7 +42,7 @@ public class Jovem {
     private List<DesafioEspecialidadeFeita> desafiosEspecialidadeFeitos;
 
     @OneToMany(mappedBy = "jovem", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<DesafioDistintivoFeita> desafiosDistintivoFeitos;
+    private List<DesafioDistintivoFeito> desafiosDistintivoFeitos;
 
     public Integer getIdJovem() {
         return idJovem;
@@ -127,12 +132,40 @@ public class Jovem {
         this.desafiosEspecialidadeFeitos = desafiosEspecialidadeFeitos;
     }
 
-    public List<DesafioDistintivoFeita> getDesafiosDistintivoFeitos() {
+    public List<DesafioDistintivoFeito> getDesafiosDistintivoFeitos() {
         return desafiosDistintivoFeitos;
     }
 
-    public void setDesafiosDistintivoFeitos(List<DesafioDistintivoFeita> desafiosDistintivoFeitos) {
+    public void setDesafiosDistintivoFeitos(List<DesafioDistintivoFeito> desafiosDistintivoFeitos) {
         this.desafiosDistintivoFeitos = desafiosDistintivoFeitos;
     }
+
+    @Override
+    public String toString() {
+        return "Jovem{" +
+                "idJovem=" + idJovem +
+                ", nome='" + nome + '\'' +
+                ", dataNascimento=" + dataNascimento +
+                ", telefone='" + telefone + '\'' +
+                ", email='" + email + '\'' +
+                ", tipoSanguineo=" + (tipoSanguineo != null ? tipoSanguineo.getClass().getSimpleName() + "@" + tipoSanguineo.hashCode() : "null") +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Jovem jovem = (Jovem) o;
+
+        return Objects.equals(idJovem, jovem.idJovem);
+    }
+
+    @Override
+    public int hashCode() {
+        return idJovem != null ? idJovem.hashCode() : 0;
+    }
+
 
 }

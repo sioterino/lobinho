@@ -2,6 +2,8 @@ package ads.bcd.sofia.model;
 
 import jakarta.persistence.*;
 
+import java.util.Objects;
+
 @Entity
 public class Vinculo {
 
@@ -40,4 +42,29 @@ public class Vinculo {
     public void setResponsavel(Responsavel responsavel) {
         this.responsavel = responsavel;
     }
+
+    @Override
+    public String toString() {
+        return "Vinculo{" +
+                "id=" + id +
+                ", jovem=" + (jovem != null ? jovem.getIdJovem() : "null") +
+                ", responsavel=" + (responsavel != null ? responsavel.getIdResponsavel() : "null") +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Vinculo vinculo = (Vinculo) o;
+
+        return Objects.equals(id, vinculo.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return id != null ? id.hashCode() : 0;
+    }
+
 }
