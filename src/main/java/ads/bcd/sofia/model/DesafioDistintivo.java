@@ -1,10 +1,13 @@
 package ads.bcd.sofia.model;
 
 import jakarta.persistence.*;
+import lombok.Data;
+
 import java.util.List;
 import java.util.Objects;
 
 @Entity
+@Data
 public class DesafioDistintivo {
 
     @Id
@@ -23,56 +26,4 @@ public class DesafioDistintivo {
 
     public DesafioDistintivo() {}
 
-    public Integer getIdDesafioDistintivo() {
-        return idDesafioDistintivo;
-    }
-
-    public void setIdDesafioDistintivo(Integer idDesafioDistintivo) {
-        this.idDesafioDistintivo = idDesafioDistintivo;
-    }
-
-    public String getDescricao() {
-        return descricao;
-    }
-
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
-    }
-
-    public Distintivo getDistintivo() {
-        return distintivo;
-    }
-
-    public void setDistintivo(Distintivo distintivo) {
-        this.distintivo = distintivo;
-    }
-
-    public List<DesafioDistintivoFeito> getDesafiosFeitos() {
-        return desafiosFeitos;
-    }
-
-    public void setDesafiosFeitos(List<DesafioDistintivoFeito> desafiosFeitos) {
-        this.desafiosFeitos = desafiosFeitos;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof DesafioDistintivo)) return false;
-        DesafioDistintivo that = (DesafioDistintivo) o;
-        return Objects.equals(idDesafioDistintivo, that.idDesafioDistintivo);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(idDesafioDistintivo);
-    }
-
-    @Override
-    public String toString() {
-        return "DesafioDistintivo{" +
-                "idDesafioDistintivo=" + idDesafioDistintivo +
-                ", descricao='" + descricao + '\'' +
-                '}';
-    }
 }
