@@ -1,6 +1,7 @@
 package ads.bcd.sofia.model;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -8,6 +9,7 @@ import java.time.LocalDateTime;
 
 @Entity
 @Data
+@AllArgsConstructor
 public class DesafioEspecialidadeFeita implements Serializable {
 
     @Id

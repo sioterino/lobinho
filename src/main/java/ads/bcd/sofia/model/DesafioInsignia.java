@@ -1,6 +1,7 @@
 package ads.bcd.sofia.model;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -8,6 +9,7 @@ import java.util.List;
 
 @Entity
 @Data
+@AllArgsConstructor
 public class DesafioInsignia implements Serializable {
 
     @Id

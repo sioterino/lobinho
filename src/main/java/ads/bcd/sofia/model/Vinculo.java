@@ -1,12 +1,14 @@
 package ads.bcd.sofia.model;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 
 import java.io.Serializable;
 
 @Entity
 @Data
+@AllArgsConstructor
 public class Vinculo implements Serializable {
 
     @Id
