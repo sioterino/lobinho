@@ -3,11 +3,11 @@ package ads.bcd.sofia.model;
 import jakarta.persistence.*;
 import lombok.Data;
 
-import java.util.Objects;
+import java.io.Serializable;
 
 @Entity
 @Data
-public class Vinculo {
+public class Vinculo implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,6 +21,6 @@ public class Vinculo {
     @JoinColumn(name = "idResponsavel", nullable = false)
     private Responsavel responsavel;
 
-    public Vinculo() {}
+    protected Vinculo() {}
 
 }

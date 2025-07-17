@@ -3,13 +3,13 @@ package ads.bcd.sofia.model;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Objects;
 
 @Entity
 @Data
-public class Jovem {
+public class Jovem implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -49,6 +49,6 @@ public class Jovem {
     @OneToMany(mappedBy = "jovem", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<DesafioDistintivoFeito> desafiosDistintivoFeitos;
 
-    public Jovem() {}
+    protected Jovem() {}
 
 }

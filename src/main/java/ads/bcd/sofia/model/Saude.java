@@ -3,9 +3,11 @@ package ads.bcd.sofia.model;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.io.Serializable;
+
 @Entity
 @Data
-public class Saude {
+public class Saude implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,6 +21,6 @@ public class Saude {
     @JoinColumn(name = "idProblemaSaude", nullable = false)
     private ProblemaSaude problemaSaude;
 
-    public Saude() {}
+    protected Saude() {}
 
 }

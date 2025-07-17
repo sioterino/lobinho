@@ -3,12 +3,12 @@ package ads.bcd.sofia.model;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.io.Serializable;
 import java.util.List;
-import java.util.Objects;
 
 @Entity
 @Data
-public class Distintivo {
+public class Distintivo implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,6 +20,6 @@ public class Distintivo {
     @OneToMany(mappedBy = "distintivo", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<DesafioDistintivo> desafiosDistintivo;
 
-    public Distintivo() {}
+    protected Distintivo() {}
 
 }

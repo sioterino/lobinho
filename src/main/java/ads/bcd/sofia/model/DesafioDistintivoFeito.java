@@ -3,11 +3,12 @@ package ads.bcd.sofia.model;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
 @Entity
 @Data
-public class DesafioDistintivoFeito {
+public class DesafioDistintivoFeito implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,6 +28,6 @@ public class DesafioDistintivoFeito {
     @Column(nullable = false)
     private LocalDateTime dataFim;
 
-    public DesafioDistintivoFeito() {}
+    protected DesafioDistintivoFeito() {}
 
 }

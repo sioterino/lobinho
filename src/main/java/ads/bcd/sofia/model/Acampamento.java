@@ -3,13 +3,13 @@ package ads.bcd.sofia.model;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Objects;
 
 @Entity
 @Data
-public class Acampamento {
+public class Acampamento implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,6 +24,6 @@ public class Acampamento {
     @OneToMany(mappedBy = "acampamento", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<NoiteAcampada> noitesAcampadas;
 
-    public Acampamento() {}
+    protected Acampamento() {}
 
 }

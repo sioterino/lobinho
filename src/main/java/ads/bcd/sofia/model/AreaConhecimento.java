@@ -3,12 +3,12 @@ package ads.bcd.sofia.model;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.io.Serializable;
 import java.util.List;
-import java.util.Objects;
 
 @Entity
 @Data
-public class AreaConhecimento {
+public class AreaConhecimento implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,6 +20,6 @@ public class AreaConhecimento {
     @OneToMany(mappedBy = "areaDeConhecimento", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Especialidade> especialidades;
 
-    public AreaConhecimento() {}
+    protected AreaConhecimento() {}
 
 }

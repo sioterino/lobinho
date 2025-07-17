@@ -3,12 +3,12 @@ package ads.bcd.sofia.model;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.io.Serializable;
 import java.util.List;
-import java.util.Objects;
 
 @Entity
 @Data
-public class Responsavel {
+public class Responsavel implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,6 +26,6 @@ public class Responsavel {
     @OneToMany(mappedBy = "responsavel", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Vinculo> vinculos;
 
-    public Responsavel() {}
+    protected Responsavel() {}
 
 }
