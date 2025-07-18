@@ -1,6 +1,6 @@
 package ads.bcd.sofia.repository;
 
-import ads.bcd.sofia.model.DesafioEspecialidadeFeita;
+import ads.bcd.sofia.model.especialidade.DesafioEspecialidadeFeita;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;

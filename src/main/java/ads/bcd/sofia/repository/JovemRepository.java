@@ -1,7 +1,7 @@
 package ads.bcd.sofia.repository;
 
 import ads.bcd.sofia.model.Jovem;
-import ads.bcd.sofia.model.TipoSanguineo;
+import ads.bcd.sofia.model.saude.TipoSanguineo;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;

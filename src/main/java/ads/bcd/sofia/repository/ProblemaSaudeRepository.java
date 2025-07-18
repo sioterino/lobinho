@@ -1,6 +1,6 @@
 package ads.bcd.sofia.repository;
 
-import ads.bcd.sofia.model.ProblemaSaude;
+import ads.bcd.sofia.model.saude.ProblemaSaude;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;

@@ -1,7 +1,11 @@
 package ads.bcd.sofia;
 
 import java.util.Optional;
+import java.util.Scanner;
 
+import ads.bcd.sofia.model.saude.TipoSanguineo;
+import ads.bcd.sofia.utils.Input;
+import ads.bcd.sofia.utils.Menus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -9,7 +13,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.annotation.Bean;
 
-import ads.bcd.sofia.model.*;
 import ads.bcd.sofia.repository.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
@@ -37,11 +40,6 @@ public class Application {
         log.info("Aplicação finalizada");
     }
 
-    private void populateDatabase() throws Exception {
-
-    }
-
-
     private void listRecords() throws Exception {
         System.out.println("------ Tipo Sanguíneo ------");
         tipoSanguineoRepository.findAll().forEach(System.out::println);
@@ -62,12 +60,13 @@ public class Application {
         });
     }
 
+
+
     @Bean
     public CommandLineRunner runApp() {
         return (args) -> {
             try {
                 log.info("Iniciando aplicação");
-//                this.populateDatabase();
                 this.listRecords();
             } catch (Exception e) {
                 log.error("Erro: ", e);

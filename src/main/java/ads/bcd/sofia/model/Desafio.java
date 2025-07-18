@@ -1,5 +1,6 @@
 package ads.bcd.sofia.model;
 
+import ads.bcd.sofia.model.insignia.Insignia;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
