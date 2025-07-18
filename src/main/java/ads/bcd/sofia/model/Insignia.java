@@ -3,12 +3,14 @@ package ads.bcd.sofia.model;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
-import java.util.List;
 
 @Entity
+@Table(name = "Insignia", schema = "sofiadb")
 @Data
+@NoArgsConstructor
 @AllArgsConstructor
 public class Insignia implements Serializable {
 
@@ -18,10 +20,5 @@ public class Insignia implements Serializable {
 
     @Column(nullable = false)
     private String nome;
-
-    @OneToMany(mappedBy = "insignia", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<DesafioInsignia> desafios;
-
-    protected Insignia() {}
 
 }

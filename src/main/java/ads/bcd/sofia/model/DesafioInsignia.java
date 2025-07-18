@@ -3,18 +3,20 @@ package ads.bcd.sofia.model;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
-import java.util.List;
 
 @Entity
+@Table(name = "DesafioInsignia", schema = "sofiadb")
 @Data
+@NoArgsConstructor
 @AllArgsConstructor
 public class DesafioInsignia implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer idDesafio;
+    private Integer idDesafioInsignia;
 
     @Column(nullable = false)
     private String nome;
@@ -22,10 +24,5 @@ public class DesafioInsignia implements Serializable {
     @ManyToOne
     @JoinColumn(name = "idInsignia", nullable = false)
     private Insignia insignia;
-
-    @OneToMany(mappedBy = "desafioInsignia", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<DesafioInsigniaFeita> completacoes;
-
-    protected DesafioInsignia() {}
 
 }

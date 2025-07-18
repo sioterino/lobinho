@@ -3,11 +3,14 @@ package ads.bcd.sofia.model;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 
 @Entity
+@Table(name = "ProblemaSaude", schema = "sofiadb")
 @Data
+@NoArgsConstructor
 @AllArgsConstructor
 public class ProblemaSaude implements Serializable {
 
@@ -19,7 +22,5 @@ public class ProblemaSaude implements Serializable {
     private String tipoProblema;
 
     private String descricao;
-
-    protected ProblemaSaude() {}
 
 }

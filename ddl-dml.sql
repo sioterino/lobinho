@@ -9,6 +9,7 @@ USE sofiadb;
 CREATE TABLE IF NOT EXISTS sofiadb.TipoSanguineo (
 	idTipoSanguineo INT NOT NULL AUTO_INCREMENT,
 	tipo VARCHAR(45) NOT NULL,
+
     PRIMARY KEY (idTipoSanguineo)
 );
 
@@ -19,12 +20,13 @@ CREATE TABLE IF NOT EXISTS sofiadb.Jovem (
     telefone VARCHAR(45) NOT NULL,
     email VARCHAR(255) NOT NULL,
     idTipoSanguineo INT NOT NULL,
+
     PRIMARY KEY (idJovem),
     INDEX fk_Jovem_TipoSanguineo_idx (idTipoSanguineo),
+
     CONSTRAINT fk_Jovem_TipoSanguineo FOREIGN KEY (idTipoSanguineo)
     REFERENCES sofiadb.TipoSanguineo (idTipoSanguineo)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION
+    ON DELETE NO ACTION ON UPDATE NO ACTION
 );
 
 CREATE TABLE IF NOT EXISTS sofiadb.Responsavel (
@@ -32,32 +34,33 @@ CREATE TABLE IF NOT EXISTS sofiadb.Responsavel (
     nome VARCHAR(255) NOT NULL,
 	telefone VARCHAR(45) NOT NULL,
     email VARCHAR(255) NOT NULL,
+
     PRIMARY KEY (idResponsavel)
 );
 
 CREATE TABLE IF NOT EXISTS sofiadb.Vinculo (
-	id INT NOT NULL AUTO_INCREMENT,
+	idVinculo INT NOT NULL AUTO_INCREMENT,
 	idJovem INT NOT NULL,
 	idResponsavel INT NOT NULL,
+
 	PRIMARY KEY (id),
     INDEX idx_idResponsavel (idResponsavel),
     INDEX idx_idJovem (idJovem),
-    CONSTRAINT fk_Vinculo_Jovem
-    FOREIGN KEY (idJovem)
+
+    CONSTRAINT fk_Vinculo_Jovem FOREIGN KEY (idJovem)
     REFERENCES sofiadb.Jovem (idJovem)
-    ON DELETE CASCADE
-    ON UPDATE CASCADE,
-    CONSTRAINT fk_Vinculo_Responsavel
-    FOREIGN KEY (idResponsavel)
+    ON DELETE CASCADE ON UPDATE CASCADE,
+
+    CONSTRAINT fk_Vinculo_Responsavel FOREIGN KEY (idResponsavel)
     REFERENCES sofiadb.Responsavel (idResponsavel)
-    ON DELETE CASCADE
-    ON UPDATE CASCADE
+    ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 CREATE TABLE IF NOT EXISTS sofiadb.ProblemaSaude (
-	 idProblemaSaude INT NOT NULL AUTO_INCREMENT,
+    idProblemaSaude INT NOT NULL AUTO_INCREMENT,
 	tipoProblema VARCHAR(255) NOT NULL,
     descricao VARCHAR(255),
+
     PRIMARY KEY (idProblemaSaude)
 );
 
@@ -65,24 +68,24 @@ CREATE TABLE IF NOT EXISTS sofiadb.Saude (
 	id INT NOT NULL AUTO_INCREMENT,
 	idJovem INT NOT NULL,
     idProblemaSaude INT NOT NULL,
+
     PRIMARY KEY (id),
     INDEX idx_idJovem (idJovem),
     INDEX idx_idProblemaSaude (idProblemaSaude),
-    CONSTRAINT fk_Saude_Jovem
-    FOREIGN KEY (idJovem)
+
+    CONSTRAINT fk_Saude_Jovem FOREIGN KEY (idJovem)
     REFERENCES sofiadb.Jovem (idJovem)
-    ON DELETE CASCADE
-    ON UPDATE CASCADE,
-    CONSTRAINT fk_Saude_ProblemaSaude
-    FOREIGN KEY (idProblemaSaude)
+    ON DELETE CASCADE ON UPDATE CASCADE,
+
+    CONSTRAINT fk_Saude_ProblemaSaude FOREIGN KEY (idProblemaSaude)
     REFERENCES sofiadb.ProblemaSaude (idProblemaSaude)
-    ON DELETE CASCADE
-    ON UPDATE CASCADE
+    ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 CREATE TABLE IF NOT EXISTS sofiadb.Insignia (
 	idInsignia INT NOT NULL AUTO_INCREMENT,
 	nome VARCHAR(255) NOT NULL,
+
     PRIMARY KEY (idInsignia)
 );
 
@@ -90,143 +93,144 @@ CREATE TABLE IF NOT EXISTS sofiadb.Desafio (
 	idDesafio INT NOT NULL AUTO_INCREMENT,
 	nome VARCHAR(255) NOT NULL,
     idInsignia INT,
+
     PRIMARY KEY (idDesafio),
     INDEX idx_idInsignia (idInsignia),
-    CONSTRAINT fk_Desafio_Insignia
-    FOREIGN KEY (idInsignia)
+
+    CONSTRAINT fk_Desafio_Insignia FOREIGN KEY (idInsignia)
     REFERENCES sofiadb.Insignia (idInsignia)
-    ON DELETE SET NULL
-    ON UPDATE CASCADE
+    ON DELETE SET NULL ON UPDATE CASCADE
 );
 
 CREATE TABLE IF NOT EXISTS sofiadb.DesafioInsignia (
 	idDesafioInsignia INT NOT NULL AUTO_INCREMENT,
 	nome VARCHAR(255) NOT NULL,
     idInsignia INT NOT NULL,
+
     PRIMARY KEY (idDesafioInsignia),
     INDEX fk_DesafioInsignia_Insignia_idx (idInsignia),
-    CONSTRAINT fk_DesafioInsignia_Insignia
-    FOREIGN KEY (idInsignia) REFERENCES sofiadb.Insignia (idInsignia)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION
-) ENGINE=InnoDB;
+
+    CONSTRAINT fk_DesafioInsignia_Insignia FOREIGN KEY (idInsignia)
+    REFERENCES sofiadb.Insignia (idInsignia)
+    ON DELETE NO ACTION ON UPDATE NO ACTION
+)
 
 CREATE TABLE IF NOT EXISTS sofiadb.DesafioInsigniaFeita (
 	id INT NOT NULL AUTO_INCREMENT,
 	idDesafioInsignia INT NOT NULL,
 	idJovem INT NOT NULL,
 	data DATETIME NOT NULL,
+
 	PRIMARY KEY (id),
     INDEX idx_idDesafioInsignia (idDesafioInsignia),
     INDEX idx_idJovem (idJovem),
-    CONSTRAINT fk_DesafioInsigniaFeita_DesafioInsignia
-    FOREIGN KEY (idDesafioInsignia)
-    REFERENCES sofiadb.DesafioInsignia (idDesafioInsignia)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-    CONSTRAINT fk_DesafioInsigniaFeita_Jovem
-    FOREIGN KEY (idJovem)
-    REFERENCES sofiadb.Jovem (idJovem)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION
-) ENGINE=InnoDB;
 
-CREATE TABLE IF NOT EXISTS sofiadb.AreaDeConhecimento (
-	idAreaDeConhecimento INT NOT NULL AUTO_INCREMENT,
+    CONSTRAINT fk_DesafioInsigniaFeita_DesafioInsignia FOREIGN KEY (idDesafioInsignia)
+    REFERENCES sofiadb.DesafioInsignia (idDesafioInsignia)
+    ON DELETE NO ACTION ON UPDATE NO ACTION,
+
+    CONSTRAINT fk_DesafioInsigniaFeita_Jovem FOREIGN KEY (idJovem)
+    REFERENCES sofiadb.Jovem (idJovem)
+    ON DELETE NO ACTION ON UPDATE NO ACTION
+)
+
+CREATE TABLE IF NOT EXISTS sofiadb.AreaConhecimento (
+	idAreaConhecimento INT NOT NULL AUTO_INCREMENT,
 	nome VARCHAR(255) NOT NULL,
-    PRIMARY KEY (idAreaDeConhecimento)
-) ENGINE=InnoDB;
+    
+    PRIMARY KEY (idAreaConhecimento)
+)
 
 CREATE TABLE IF NOT EXISTS sofiadb.Especialidade (
 	idEspecialidade INT NOT NULL AUTO_INCREMENT,
 	nome VARCHAR(255) NOT NULL,
-    idAreaDeConhecimento INT,
+    idAreaConhecimento INT,
+
     PRIMARY KEY (idEspecialidade),
-    INDEX idx_idAreaDeConhecimento (idAreaDeConhecimento),
-    CONSTRAINT fk_Especialidade_AreaDeConhecimento
-    FOREIGN KEY (idAreaDeConhecimento)
-    REFERENCES sofiadb.AreaDeConhecimento (idAreaDeConhecimento)
-    ON DELETE SET NULL
-    ON UPDATE CASCADE
-) ENGINE=InnoDB;
+    INDEX idx_idAreaConhecimento (idAreaConhecimento),
+
+    CONSTRAINT fk_Especialidade_AreaConhecimento FOREIGN KEY (idAreaConhecimento)
+    REFERENCES sofiadb.AreaConhecimento (idAreaConhecimento)
+    ON DELETE SET NULL ON UPDATE CASCADE
+)
 
 CREATE TABLE IF NOT EXISTS sofiadb.DesafioEspecialidade (
 	idDesafioEspecialidade INT NOT NULL AUTO_INCREMENT,
 	nome VARCHAR(255) NOT NULL,
     idEspecialidade INT,
+
     PRIMARY KEY (idDesafioEspecialidade),
     INDEX idx_idEspecialidade (idEspecialidade),
-    CONSTRAINT fk_DesafioEspecialidade_Especialidade
-    FOREIGN KEY (idEspecialidade)
+
+    CONSTRAINT fk_DesafioEspecialidade_Especialidade FOREIGN KEY (idEspecialidade)
     REFERENCES sofiadb.Especialidade (idEspecialidade)
-    ON DELETE SET NULL
-    ON UPDATE CASCADE
-) ENGINE=InnoDB;
+    ON DELETE SET NULL ON UPDATE CASCADE
+)
 
 CREATE TABLE IF NOT EXISTS sofiadb.DesafioEspecialidadeFeita (
 	id INT NOT NULL AUTO_INCREMENT,
 	idDesafioEspecialidade INT NOT NULL,
 	idJovem INT NOT NULL,
 	data DATETIME NOT NULL,
+
 	PRIMARY KEY (id),
     INDEX idx_idDesafioEspecialidade (idDesafioEspecialidade),
     INDEX idx_idJovem (idJovem),
-    CONSTRAINT fk_DesafioEspecialidadeFeita_DesafioEspecialidade
-    FOREIGN KEY (idDesafioEspecialidade)
+
+    CONSTRAINT fk_DesafioEspecialidadeFeita_DesafioEspecialidade FOREIGN KEY (idDesafioEspecialidade)
     REFERENCES sofiadb.DesafioEspecialidade (idDesafioEspecialidade)
-    ON DELETE NO ACTION
-    ON UPDATE CASCADE,
-    CONSTRAINT fk_DesafioEspecialidadeFeita_Jovem
-    FOREIGN KEY (idJovem)
+    ON DELETE NO ACTION ON UPDATE CASCADE,
+
+    CONSTRAINT fk_DesafioEspecialidadeFeita_Jovem FOREIGN KEY (idJovem)
     REFERENCES sofiadb.Jovem (idJovem)
-    ON DELETE NO ACTION
-    ON UPDATE CASCADE
-) ENGINE=InnoDB;
+    ON DELETE NO ACTION ON UPDATE CASCADE
+)
 
 CREATE TABLE IF NOT EXISTS sofiadb.Acampamento (
 	idAcampamento INT NOT NULL AUTO_INCREMENT,
 	nome VARCHAR(255) NOT NULL,
     data DATETIME NOT NULL,
+
     PRIMARY KEY (idAcampamento)
-) ENGINE=InnoDB;
+)
 
 CREATE TABLE IF NOT EXISTS sofiadb.NoiteAcampada (
 	id INT NOT NULL AUTO_INCREMENT,
 	idAcampamento INT NOT NULL,
 	idJovem INT NOT NULL,
+
 	PRIMARY KEY (id),
     INDEX idx_idAcampamento (idAcampamento),
     INDEX idx_idJovem (idJovem),
-    CONSTRAINT fk_NoiteAcampada_Acampamento
-    FOREIGN KEY (idAcampamento)
+
+    CONSTRAINT fk_NoiteAcampada_Acampamento FOREIGN KEY (idAcampamento)
     REFERENCES sofiadb.Acampamento (idAcampamento)
-    ON DELETE CASCADE
-    ON UPDATE CASCADE,
-    CONSTRAINT fk_NoiteAcampada_Jovem
-    FOREIGN KEY (idJovem)
+    ON DELETE CASCADE ON UPDATE CASCADE,
+
+    CONSTRAINT fk_NoiteAcampada_Jovem FOREIGN KEY (idJovem)
     REFERENCES sofiadb.Jovem (idJovem)
-    ON DELETE CASCADE
-    ON UPDATE CASCADE
-) ENGINE=InnoDB;
+    ON DELETE CASCADE ON UPDATE CASCADE
+)
 
 CREATE TABLE IF NOT EXISTS sofiadb.Distintivo (
 	idDistintivo INT NOT NULL AUTO_INCREMENT,
 	nome VARCHAR(45) NOT NULL,
+
     PRIMARY KEY (idDistintivo)
-) ENGINE=InnoDB;
+)
 
 CREATE TABLE IF NOT EXISTS sofiadb.DesafioDistintivo (
 	idDesafioDistintivo INT NOT NULL AUTO_INCREMENT,
 	descricao VARCHAR(45) NOT NULL,
     idDistintivo INT,
+
     PRIMARY KEY (idDesafioDistintivo),
     INDEX idx_idDistintivo (idDistintivo),
-    CONSTRAINT fk_DesafioDistintivo_Distintivo
-    FOREIGN KEY (idDistintivo)
+
+    CONSTRAINT fk_DesafioDistintivo_Distintivo FOREIGN KEY (idDistintivo)
     REFERENCES sofiadb.Distintivo (idDistintivo)
-    ON DELETE SET NULL
-    ON UPDATE CASCADE
-) ENGINE=InnoDB;
+    ON DELETE SET NULL ON UPDATE CASCADE
+)
 
 CREATE TABLE IF NOT EXISTS sofiadb.DesafioDistintivoFeita (
 	id INT NOT NULL AUTO_INCREMENT,
@@ -234,20 +238,19 @@ CREATE TABLE IF NOT EXISTS sofiadb.DesafioDistintivoFeita (
 	idJovem INT NOT NULL,
 	dataInicio DATETIME NOT NULL,
 	dataFim DATETIME NOT NULL,
+
 	PRIMARY KEY (id),
     INDEX idx_idDesafioDistintivo (idDesafioDistintivo),
     INDEX idx_idJovem (idJovem),
-    CONSTRAINT fk_DesafioDistintivoFeita_DesafioDistintivo
-    FOREIGN KEY (idDesafioDistintivo)
+
+    CONSTRAINT fk_DesafioDistintivoFeita_DesafioDistintivo FOREIGN KEY (idDesafioDistintivo)
     REFERENCES sofiadb.DesafioDistintivo (idDesafioDistintivo)
-    ON DELETE NO ACTION
-    ON UPDATE CASCADE,
-    CONSTRAINT fk_DesafioDistintivoFeita_Jovem
-    FOREIGN KEY (idJovem)
+    ON DELETE NO ACTION ON UPDATE CASCADE,
+
+    CONSTRAINT fk_DesafioDistintivoFeita_Jovem FOREIGN KEY (idJovem)
     REFERENCES sofiadb.Jovem (idJovem)
-    ON DELETE NO ACTION
-    ON UPDATE CASCADE
-) ENGINE=InnoDB;
+    ON DELETE NO ACTION ON UPDATE CASCADE
+)
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
@@ -285,11 +288,11 @@ INSERT INTO Vinculo (idJovem, idResponsavel) VALUES
 (6, 3), (7, 3), (8, 3);
 
 -- ÁREA DE CONHECIMENTO
-INSERT INTO AreaDeConhecimento (nome) VALUES
+INSERT INTO AreaConhecimento (nome) VALUES
 ('Ciência e Tecnologia'), ('Cultura'), ('Desporto'), ('Habilidade Escoteira'), ('Serviço');
 
 -- ESPECIALIDADE
-INSERT INTO Especialidade (nome, idAreaDeConhecimento) VALUES
+INSERT INTO Especialidade (nome, idAreaConhecimento) VALUES
 ('Radioamadorismo', 1), ('Criptografia', 1),
 ('História Regional', 2), ('Xadrez', 2),
 ('Futebol', 3), ('Atletismo', 3),
@@ -425,12 +428,12 @@ INNER JOIN DesafioInsigniaFeita dif ON dif.idJovem = j.idJovem
 INNER JOIN DesafioEspecialidadeFeita def ON def.idJovem = j.idJovem
 INNER JOIN DesafioEspecialidade de ON de.idDesafioEspecialidade = def.idDesafioEspecialidade
 INNER JOIN Especialidade e ON e.idEspecialidade = de.idEspecialidade
-INNER JOIN AreaDeConhecimento ac ON ac.idAreaDeConhecimento = e.idAreaDeConhecimento
+INNER JOIN AreaConhecimento ac ON ac.idAreaConhecimento = e.idAreaConhecimento
 
 GROUP BY j.idJovem, j.nome
 
 HAVING
     COUNT(DISTINCT def.idDesafioEspecialidade) >= 5 -- pelo menos 5 especialidades feitas
-    AND COUNT(DISTINCT ac.idAreaDeConhecimento) >= 3 -- pelo menos 3 áreas de conhecimento diferentes
+    AND COUNT(DISTINCT ac.idAreaConhecimento) >= 3 -- pelo menos 3 áreas de conhecimento diferentes
     AND COUNT(DISTINCT dif.idDesafioInsignia) >= 1 -- pelo menos 1 insígnia feita
 ;

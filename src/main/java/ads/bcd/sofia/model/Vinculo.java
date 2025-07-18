@@ -3,17 +3,19 @@ package ads.bcd.sofia.model;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 
 @Entity
+@Table(name = "Vinculo", schema = "sofiadb")
 @Data
+@NoArgsConstructor
 @AllArgsConstructor
 public class Vinculo implements Serializable {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Integer idVinculo;
 
     @ManyToOne
     @JoinColumn(name = "idJovem", nullable = false)
@@ -22,7 +24,5 @@ public class Vinculo implements Serializable {
     @ManyToOne
     @JoinColumn(name = "idResponsavel", nullable = false)
     private Responsavel responsavel;
-
-    protected Vinculo() {}
-
 }
+

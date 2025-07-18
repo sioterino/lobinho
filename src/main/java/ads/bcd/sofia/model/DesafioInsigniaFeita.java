@@ -3,21 +3,24 @@ package ads.bcd.sofia.model;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
 @Entity
+@Table(name = "DesafioInsigniaFeita", schema = "sofiadb")
 @Data
 @AllArgsConstructor
-public class DesafioInsigniaFeita implements Serializable {
+@NoArgsConstructor
+public class DesafioInsigniaFeita implements  Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @ManyToOne
-    @JoinColumn(name = "idDesafio", nullable = false)
+    @JoinColumn(name = "idDesafioInsignia", nullable = false)
     private DesafioInsignia desafioInsignia;
 
     @ManyToOne
@@ -26,7 +29,5 @@ public class DesafioInsigniaFeita implements Serializable {
 
     @Column(nullable = false)
     private LocalDateTime data;
-
-    protected DesafioInsigniaFeita() {}
 
 }

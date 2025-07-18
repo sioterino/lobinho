@@ -2,13 +2,16 @@ package ads.bcd.sofia.model;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import lombok.Data;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
 @Entity
+@Table(name = "DesafioEspecialidadeFeita", schema = "sofiadb")
 @Data
+@NoArgsConstructor
 @AllArgsConstructor
 public class DesafioEspecialidadeFeita implements Serializable {
 
@@ -16,17 +19,15 @@ public class DesafioEspecialidadeFeita implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @ManyToOne
-    @JoinColumn(name = "idDesafio", nullable = false)
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "idDesafioEspecialidade")
     private DesafioEspecialidade desafioEspecialidade;
 
-    @ManyToOne
-    @JoinColumn(name = "idJovem", nullable = false)
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "idJovem")
     private Jovem jovem;
 
     @Column(nullable = false)
     private LocalDateTime data;
-
-    protected DesafioEspecialidadeFeita() {}
 
 }

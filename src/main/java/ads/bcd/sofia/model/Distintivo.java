@@ -2,13 +2,15 @@ package ads.bcd.sofia.model;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import lombok.Data;
 
 import java.io.Serializable;
-import java.util.List;
 
 @Entity
+@Table(name = "Distintivo", schema = "sofiadb")
 @Data
+@NoArgsConstructor
 @AllArgsConstructor
 public class Distintivo implements Serializable {
 
@@ -18,10 +20,5 @@ public class Distintivo implements Serializable {
 
     @Column(nullable = false)
     private String nome;
-
-    @OneToMany(mappedBy = "distintivo", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<DesafioDistintivo> desafiosDistintivo;
-
-    protected Distintivo() {}
 
 }

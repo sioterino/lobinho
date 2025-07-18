@@ -3,11 +3,14 @@ package ads.bcd.sofia.model;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 
 @Entity
+@Table(name = "Saude", schema = "sofiadb")
 @Data
+@NoArgsConstructor
 @AllArgsConstructor
 public class Saude implements Serializable {
 
@@ -22,7 +25,5 @@ public class Saude implements Serializable {
     @ManyToOne
     @JoinColumn(name = "idProblemaSaude", nullable = false)
     private ProblemaSaude problemaSaude;
-
-    protected Saude() {}
 
 }

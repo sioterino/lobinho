@@ -3,12 +3,14 @@ package ads.bcd.sofia.model;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
-import java.util.List;
 
 @Entity
+@Table(name = "Desafio", schema = "sofiadb")
 @Data
+@NoArgsConstructor
 @AllArgsConstructor
 public class Desafio implements Serializable {
 
@@ -20,12 +22,7 @@ public class Desafio implements Serializable {
     private String nome;
 
     @ManyToOne
-    @JoinColumn(name = "Insignia_idInsignia")
+    @JoinColumn(name = "idInsignia")
     private Insignia insignia;
-
-    @OneToMany(mappedBy = "idDesafio", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<DesafioInsignia> desafioInsignia;
-
-    protected Desafio() {}
 
 }

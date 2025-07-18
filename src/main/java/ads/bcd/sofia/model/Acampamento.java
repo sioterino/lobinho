@@ -3,13 +3,15 @@ package ads.bcd.sofia.model;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
-import java.util.List;
 
 @Entity
+@Table(name = "Acampamento", schema = "sofiadb")
 @Data
+@NoArgsConstructor
 @AllArgsConstructor
 public class Acampamento implements Serializable {
 
@@ -22,10 +24,5 @@ public class Acampamento implements Serializable {
 
     @Column(nullable = false)
     private LocalDateTime data;
-
-    @OneToMany(mappedBy = "acampamento", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<NoiteAcampada> noitesAcampadas;
-
-    protected Acampamento() {}
 
 }

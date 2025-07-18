@@ -3,12 +3,14 @@ package ads.bcd.sofia.model;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
-import java.util.List;
 
 @Entity
+@Table(name = "Responsavel", schema = "sofiadb")
 @Data
+@NoArgsConstructor
 @AllArgsConstructor
 public class Responsavel implements Serializable {
 
@@ -16,18 +18,13 @@ public class Responsavel implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idResponsavel;
 
-    @Column(nullable = false)
+    @Column(nullable = false, length = 255)
     private String nome;
 
-    @Column(nullable = false)
+    @Column(nullable = false, length = 45)
     private String telefone;
 
-    @Column(nullable = false)
+    @Column(nullable = false, length = 255)
     private String email;
-
-    @OneToMany(mappedBy = "responsavel", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Vinculo> vinculos;
-
-    protected Responsavel() {}
 
 }

@@ -3,13 +3,15 @@ package ads.bcd.sofia.model;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
-import java.util.List;
 
 @Entity
+@Table(name = "Jovem", schema = "sofiadb")
 @Data
+@NoArgsConstructor
 @AllArgsConstructor
 public class Jovem implements Serializable {
 
@@ -17,40 +19,20 @@ public class Jovem implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idJovem;
 
-    @Column(nullable = false)
+    @Column(nullable = false, length = 255)
     private String nome;
 
     @Column(nullable = false)
     private LocalDateTime dataNascimento;
 
-    @Column(nullable = false)
+    @Column(nullable = false, length = 45)
     private String telefone;
 
-    @Column(nullable = false)
+    @Column(nullable = false, length = 255)
     private String email;
 
     @ManyToOne
-    @JoinColumn(name = "idTipoSanguineo")
+    @JoinColumn(name = "idTipoSanguineo", nullable = false)
     private TipoSanguineo tipoSanguineo;
-
-    @OneToMany(mappedBy = "jovem", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Vinculo> vinculos;
-
-    @OneToMany(mappedBy = "jovem", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Saude> problemasDeSaude;
-
-    @OneToMany(mappedBy = "jovem", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<NoiteAcampada> noitesAcampadas;
-
-    @OneToMany(mappedBy = "jovem", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<DesafioInsigniaFeita> desafiosInsigniaFeitos;
-
-    @OneToMany(mappedBy = "jovem", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<DesafioEspecialidadeFeita> desafiosEspecialidadeFeitos;
-
-    @OneToMany(mappedBy = "jovem", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<DesafioDistintivoFeito> desafiosDistintivoFeitos;
-
-    protected Jovem() {}
 
 }
