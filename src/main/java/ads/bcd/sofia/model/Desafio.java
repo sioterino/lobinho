@@ -23,8 +23,8 @@ public class Desafio implements Serializable {
     @JoinColumn(name = "Insignia_idInsignia")
     private Insignia insignia;
 
-    @OneToMany(mappedBy = "desafio", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<DesafioInsignia> desafiosInsignia;
+    @OneToMany(mappedBy = "idDesafio", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<DesafioInsignia> desafioInsignia;
 
     protected Desafio() {}
 

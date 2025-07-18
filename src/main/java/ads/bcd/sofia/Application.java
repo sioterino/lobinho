@@ -1,6 +1,5 @@
 package ads.bcd.sofia;
 
-import java.time.LocalDateTime;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,62 +34,7 @@ public class Application {
     }
 
     private void populateDatabase() throws Exception {
-        // Create blood types using constructor
-        TipoSanguineo tipoA = new TipoSanguineo(null, "A+");
-        TipoSanguineo tipoB = new TipoSanguineo(null, "B+");
 
-        tipoSanguineoRepository.save(tipoA);
-        tipoSanguineoRepository.save(tipoB);
-
-        // Create Jovens using constructor
-        Jovem jovem1 = new Jovem(
-                null,
-                "Lucas Silva",
-                LocalDateTime.of(2005, 5, 15, 0, 0),
-                "123456789",
-                "lucas@email.com",
-                tipoA,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null
-        );
-
-        Jovem jovem2 = new Jovem(
-                null,
-                "Maria Souza",
-                LocalDateTime.of(2006, 8, 20, 0, 0),
-                "987654321",
-                "maria@email.com",
-                tipoB,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null
-        );
-
-        jovemRepository.save(jovem1);
-        jovemRepository.save(jovem2);
-
-        // Create Responsável using constructor
-        Responsavel responsavel1 = new Responsavel(
-                null,
-                "João Silva",
-                "5551234",
-                "joao@email.com",
-                null // vínculos
-        );
-
-        responsavelRepository.save(responsavel1);
-
-        // Create Vínculo using constructor
-        Vinculo vinculo = new Vinculo(null, jovem1, responsavel1);
-
-        vinculoRepository.save(vinculo);
     }
 
 
@@ -119,7 +63,7 @@ public class Application {
         return (args) -> {
             try {
                 log.info("Iniciando aplicação");
-                this.populateDatabase();
+//                this.populateDatabase();
                 this.listRecords();
             } catch (Exception e) {
                 log.error("Erro: ", e);
