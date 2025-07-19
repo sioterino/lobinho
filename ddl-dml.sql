@@ -2,7 +2,7 @@ SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
 
-DROP DATABASE sofiadb;
+DROP DATABASE IF EXISTS sofiadb;
 CREATE DATABASE IF NOT EXISTS sofiadb;
 USE sofiadb;
 
@@ -43,7 +43,7 @@ CREATE TABLE IF NOT EXISTS sofiadb.Vinculo (
 	idJovem INT NOT NULL,
 	idResponsavel INT NOT NULL,
 
-	PRIMARY KEY (id),
+	PRIMARY KEY (idVinculo),
     INDEX idx_idResponsavel (idResponsavel),
     INDEX idx_idJovem (idJovem),
 
@@ -113,7 +113,7 @@ CREATE TABLE IF NOT EXISTS sofiadb.DesafioInsignia (
     CONSTRAINT fk_DesafioInsignia_Insignia FOREIGN KEY (idInsignia)
     REFERENCES sofiadb.Insignia (idInsignia)
     ON DELETE NO ACTION ON UPDATE NO ACTION
-)
+);
 
 CREATE TABLE IF NOT EXISTS sofiadb.DesafioInsigniaFeita (
 	id INT NOT NULL AUTO_INCREMENT,
@@ -132,14 +132,14 @@ CREATE TABLE IF NOT EXISTS sofiadb.DesafioInsigniaFeita (
     CONSTRAINT fk_DesafioInsigniaFeita_Jovem FOREIGN KEY (idJovem)
     REFERENCES sofiadb.Jovem (idJovem)
     ON DELETE NO ACTION ON UPDATE NO ACTION
-)
+);
 
 CREATE TABLE IF NOT EXISTS sofiadb.AreaConhecimento (
 	idAreaConhecimento INT NOT NULL AUTO_INCREMENT,
 	nome VARCHAR(255) NOT NULL,
     
     PRIMARY KEY (idAreaConhecimento)
-)
+);
 
 CREATE TABLE IF NOT EXISTS sofiadb.Especialidade (
 	idEspecialidade INT NOT NULL AUTO_INCREMENT,
@@ -152,7 +152,7 @@ CREATE TABLE IF NOT EXISTS sofiadb.Especialidade (
     CONSTRAINT fk_Especialidade_AreaConhecimento FOREIGN KEY (idAreaConhecimento)
     REFERENCES sofiadb.AreaConhecimento (idAreaConhecimento)
     ON DELETE SET NULL ON UPDATE CASCADE
-)
+);
 
 CREATE TABLE IF NOT EXISTS sofiadb.DesafioEspecialidade (
 	idDesafioEspecialidade INT NOT NULL AUTO_INCREMENT,
@@ -165,7 +165,7 @@ CREATE TABLE IF NOT EXISTS sofiadb.DesafioEspecialidade (
     CONSTRAINT fk_DesafioEspecialidade_Especialidade FOREIGN KEY (idEspecialidade)
     REFERENCES sofiadb.Especialidade (idEspecialidade)
     ON DELETE SET NULL ON UPDATE CASCADE
-)
+);
 
 CREATE TABLE IF NOT EXISTS sofiadb.DesafioEspecialidadeFeita (
 	id INT NOT NULL AUTO_INCREMENT,
@@ -184,7 +184,7 @@ CREATE TABLE IF NOT EXISTS sofiadb.DesafioEspecialidadeFeita (
     CONSTRAINT fk_DesafioEspecialidadeFeita_Jovem FOREIGN KEY (idJovem)
     REFERENCES sofiadb.Jovem (idJovem)
     ON DELETE NO ACTION ON UPDATE CASCADE
-)
+);
 
 CREATE TABLE IF NOT EXISTS sofiadb.Acampamento (
 	idAcampamento INT NOT NULL AUTO_INCREMENT,
@@ -192,7 +192,7 @@ CREATE TABLE IF NOT EXISTS sofiadb.Acampamento (
     data DATETIME NOT NULL,
 
     PRIMARY KEY (idAcampamento)
-)
+);
 
 CREATE TABLE IF NOT EXISTS sofiadb.NoiteAcampada (
 	id INT NOT NULL AUTO_INCREMENT,
@@ -210,14 +210,14 @@ CREATE TABLE IF NOT EXISTS sofiadb.NoiteAcampada (
     CONSTRAINT fk_NoiteAcampada_Jovem FOREIGN KEY (idJovem)
     REFERENCES sofiadb.Jovem (idJovem)
     ON DELETE CASCADE ON UPDATE CASCADE
-)
+);
 
 CREATE TABLE IF NOT EXISTS sofiadb.Distintivo (
 	idDistintivo INT NOT NULL AUTO_INCREMENT,
 	nome VARCHAR(45) NOT NULL,
 
     PRIMARY KEY (idDistintivo)
-)
+);
 
 CREATE TABLE IF NOT EXISTS sofiadb.DesafioDistintivo (
 	idDesafioDistintivo INT NOT NULL AUTO_INCREMENT,
@@ -230,7 +230,7 @@ CREATE TABLE IF NOT EXISTS sofiadb.DesafioDistintivo (
     CONSTRAINT fk_DesafioDistintivo_Distintivo FOREIGN KEY (idDistintivo)
     REFERENCES sofiadb.Distintivo (idDistintivo)
     ON DELETE SET NULL ON UPDATE CASCADE
-)
+);
 
 CREATE TABLE IF NOT EXISTS sofiadb.DesafioDistintivoFeita (
 	id INT NOT NULL AUTO_INCREMENT,
@@ -250,7 +250,7 @@ CREATE TABLE IF NOT EXISTS sofiadb.DesafioDistintivoFeita (
     CONSTRAINT fk_DesafioDistintivoFeita_Jovem FOREIGN KEY (idJovem)
     REFERENCES sofiadb.Jovem (idJovem)
     ON DELETE NO ACTION ON UPDATE CASCADE
-)
+);
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;

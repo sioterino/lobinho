@@ -1,11 +1,8 @@
 package ads.bcd.sofia;
 
-import java.util.Optional;
 import java.util.Scanner;
 
-import ads.bcd.sofia.model.saude.TipoSanguineo;
-import ads.bcd.sofia.utils.Input;
-import ads.bcd.sofia.utils.Menus;
+import ads.bcd.sofia.utils.enums.Menus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -13,7 +10,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.annotation.Bean;
 
-import ads.bcd.sofia.repository.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
@@ -24,50 +20,22 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 public class Application {
 
     @Autowired
-    private TipoSanguineoRepository tipoSanguineoRepository;
-
-    @Autowired
-    private JovemRepository jovemRepository;
-
-    @Autowired
-    private ResponsavelRepository responsavelRepository;
-
-    @Autowired
-    private VinculoRepository vinculoRepository;
+    private App app;
 
     public static void main(String[] args) {
         SpringApplication.run(Application.class, args);
-        log.info("Aplicação finalizada");
     }
 
-    private void listRecords() throws Exception {
-        System.out.println("------ Tipo Sanguíneo ------");
-        tipoSanguineoRepository.findAll().forEach(System.out::println);
-
-        System.out.println("------ Jovens ------");
-        jovemRepository.findAll().forEach(System.out::println);
-
-        System.out.println("------ Responsáveis ------");
-        responsavelRepository.findAll().forEach(System.out::println);
-
-        System.out.println("------ Vínculos ------");
-        vinculoRepository.findAll().forEach(System.out::println);
-
-        System.out.println("------ Buscar Jovens por Tipo Sanguíneo A+ ------");
-        Optional<TipoSanguineo> tipoA = tipoSanguineoRepository.findByTipo("A+");
-        tipoA.ifPresent(tipo -> {
-            jovemRepository.findByTipoSanguineo(tipo).forEach(System.out::println);
-        });
+    @Bean
+    public Scanner scanner() {
+        return new Scanner(System.in);
     }
-
-
 
     @Bean
     public CommandLineRunner runApp() {
         return (args) -> {
             try {
-                log.info("Iniciando aplicação");
-                this.listRecords();
+                app.landingPage();
             } catch (Exception e) {
                 log.error("Erro: ", e);
             }

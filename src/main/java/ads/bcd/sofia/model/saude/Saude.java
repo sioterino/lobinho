@@ -1,6 +1,6 @@
 package ads.bcd.sofia.model.saude;
 
-import ads.bcd.sofia.model.Jovem;
+import ads.bcd.sofia.model.pessoa.Jovem;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;

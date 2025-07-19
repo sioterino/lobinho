@@ -1,9 +1,0 @@
-package ads.bcd.sofia.repository;
-
-import ads.bcd.sofia.model.distintivo.Distintivo;
-import org.springframework.data.repository.CrudRepository;
-import org.springframework.data.repository.PagingAndSortingRepository;
-import org.springframework.data.rest.core.annotation.RepositoryRestResource;
-
-@RepositoryRestResource(collectionResourceRel = "distintivos", path = "distintivos")
-public interface DistintivoRepository extends PagingAndSortingRepository<Distintivo, Integer>, CrudRepository<Distintivo, Integer> {}

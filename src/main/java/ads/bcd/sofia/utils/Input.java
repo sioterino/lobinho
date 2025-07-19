@@ -1,72 +1,73 @@
 package ads.bcd.sofia.utils;
 
-import lombok.AllArgsConstructor;
+import ads.bcd.sofia.utils.enums.Menus;
 import lombok.Data;
+import org.springframework.stereotype.Component;
 
-import java.awt.*;
-import java.sql.SQLOutput;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
+@Component
 @Data
-@AllArgsConstructor
 public class Input {
     
-    private Scanner scanner;
-    
-    public Integer getMenuInput(int max) {
+    private final Scanner scanner;
 
+    public Input(Scanner scanner) {
+        this.scanner = scanner;
+    }
+
+    public Integer getId(int max) {
+        return getInteger(1, max);
+    }
+
+    public Integer getInteger(int max) {
+        return getInteger(0, max);
+    }
+    
+    public Integer getInteger(int min, int max) {
         while (true) {
             String input = this.get();
             if(input.isBlank()) continue;
 
-            if (input.replaceAll("-", "").length() > 1) {
-                System.out.println("Insira apenas um valor.\n");
-                continue;
-            }
-
-            int num = -1;
-
             try {
-                num = Integer.parseInt(String.valueOf(input));
+                int num = Integer.parseInt(input);
+                if (num >= min && num <= max) {
+                    return num;
+                } else {
+                    System.out.printf("Insira um valor entre %d e %d.\n\n", min, max);
+                }
             } catch (NumberFormatException e) {
                 System.out.println("Insira um valor numérico.\n");
-                continue;
-            }
-
-            if (num >= 0 && num <= max) {
-                return num;
-            } else {
-                System.out.println("Insira um valor entre 0 e " + max +".\n");
             }
         }
     }
 
     public String getString() {
-
         while(true) {
             String input = scanner.nextLine().trim();
             if (input.isBlank()) continue;
-
             return input;
         }
+    }
 
+    public LocalDateTime getDate() {
+        while(true) {
+            String input = scanner.nextLine().trim();
+            if (input.isBlank()) continue;
+            DateTimeFormatter f = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+
+            try {
+                return LocalDateTime.parse(input + " 00:00", f);
+            } catch (Exception e) {
+                System.out.println("Formato incorreto.\n");
+            }
+        }
     }
 
     private String get() {
         System.out.print(Menus.INPUT);
         return scanner.nextLine().trim();
     }
-
-    public static void main(String[] args) {
-
-        Scanner sc = new Scanner(System.in);
-        Input inp = new Input(sc);
-
-        System.out.println(Menus.MENU);
-        Integer input = inp.getMenuInput(9);
-
-        System.out.println("you pressed: " + input);
-
-    }
-    
 }
