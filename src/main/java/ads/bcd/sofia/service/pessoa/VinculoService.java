@@ -30,19 +30,8 @@ public class VinculoService implements ServiceInterface<Vinculo> {
         return repo.findById(id);
     }
 
-    @Override
     public Vinculo save(Vinculo object) {
         return repo.save(object);
-    }
-
-    @Override
-    public void deleteById(Integer id) {
-        repo.deleteById(id);
-    }
-
-    @Override
-    public boolean existsById(Integer id) {
-        return repo.existsById(id);
     }
 
     public List<Vinculo> getVinculoByIdJovem(int id) {

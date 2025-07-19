@@ -28,18 +28,8 @@ public class JovemService implements ServiceInterface<Jovem> {
         return repo.findById(id);
     }
 
-    @Override
     public Jovem save(Jovem object) {
         return repo.save(object);
     }
 
-    @Override
-    public void deleteById(Integer id) {
-        repo.deleteById(id);
-    }
-
-    @Override
-    public boolean existsById(Integer id) {
-        return repo.existsById(id);
-    }
 }

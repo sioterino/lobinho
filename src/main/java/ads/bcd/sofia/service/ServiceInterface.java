@@ -9,10 +9,4 @@ public interface ServiceInterface<T> {
 
     Optional<T> findById(Integer id);
 
-    T save(T object);
-
-    void deleteById(Integer id);
-
-    boolean existsById(Integer id);
-
 }

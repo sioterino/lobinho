@@ -2,7 +2,6 @@ package ads.bcd.sofia;
 
 import java.util.Scanner;
 
-import ads.bcd.sofia.utils.enums.Menus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;

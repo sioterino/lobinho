@@ -28,18 +28,4 @@ public class ResponsavelService implements ServiceInterface<Responsavel> {
         return repo.findById(id);
     }
 
-    @Override
-    public Responsavel save(Responsavel responsavel) {
-        return repo.save(responsavel);
-    }
-
-    @Override
-    public void deleteById(Integer id) {
-        repo.deleteById(id);
-    }
-
-    @Override
-    public boolean existsById(Integer id) {
-        return repo.existsById(id);
-    }
 }

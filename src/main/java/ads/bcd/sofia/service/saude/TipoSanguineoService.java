@@ -28,18 +28,7 @@ public class TipoSanguineoService implements ServiceInterface<TipoSanguineo> {
         return repo.findById(id);
     }
 
-    @Override
     public TipoSanguineo save(TipoSanguineo object) {
         return repo.save(object);
-    }
-
-    @Override
-    public void deleteById(Integer id) {
-        repo.deleteById(id);
-    }
-
-    @Override
-    public boolean existsById(Integer id) {
-        return repo.existsById((id));
     }
 }
