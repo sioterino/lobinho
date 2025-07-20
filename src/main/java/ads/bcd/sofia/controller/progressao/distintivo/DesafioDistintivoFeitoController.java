@@ -80,7 +80,7 @@ public class DesafioDistintivoFeitoController {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MMM yyyy", Locale.ENGLISH);
 
         Table.TableBuilder table = Table.createTable();
-        table.setTitle("DISTINTIVOS DE " + jovem.getNome().split("0", 1)[0].toUpperCase());
+        table.setTitle("DISTINTIVOS DE " + jovem.getNome().toUpperCase());
         table.addColumn("Desafio", 35);
         table.addColumn("Distintivo", 15);
         table.addColumn("Início", 15);

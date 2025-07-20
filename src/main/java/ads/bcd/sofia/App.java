@@ -5,6 +5,8 @@ import ads.bcd.sofia.controller.pessoa.JovemController;
 import ads.bcd.sofia.controller.progressao.distintivo.DesafioDistintivoFeitoController;
 import ads.bcd.sofia.controller.progressao.especialidade.DesafioEspecialidadeFeitoController;
 import ads.bcd.sofia.controller.progressao.insignia.DesafioInsigniaFeitoController;
+import ads.bcd.sofia.controller.views.AptidaoCruzeiroController;
+import ads.bcd.sofia.controller.views.JovemProgressoController;
 import ads.bcd.sofia.utils.Input;
 import ads.bcd.sofia.utils.enums.Menus;
 import lombok.AllArgsConstructor;
@@ -19,12 +21,14 @@ public class App {
 
     private final Scanner scanner;
     private final Input input;
+    private final AptidaoCruzeiroController aptidaoCruzeiroController;
 
     private JovemController jovemController;
     private DesafioEspecialidadeFeitoController desafioEspecialidadeFeitoController;
     private DesafioInsigniaFeitoController desafioInsigniaFeitoController;
     private DesafioDistintivoFeitoController desafioDistintivoFeitoController;
     private NoiteAcampadaController acampadaController;
+    private JovemProgressoController jovemProgressoController;
 
     public void landingPage() {
         System.out.println(Menus.HELLO);
@@ -75,9 +79,9 @@ public class App {
                 // carrega os (distintivos) de um jovem
                 case 3 -> desafioDistintivoFeitoController.getDistintivoByJovem();
                 // carrega as especialidades e insígnias de um jovem
-                case 4 -> System.out.println("( Especialidade, Insígnia e Distintivo ) cumpridos por um Jovem.");
+                case 4 -> jovemProgressoController.getJovemProgresso(jovemController.selectJovem().getIdJovem());
                 // carrega os jovems aptos aos distintivo de (cruzeiro do sul)
-                case 5 -> System.out.println("Jovens Aptos ao ( Cruzeiro do Sul ).");
+                case 5 -> aptidaoCruzeiroController.printAll();
             }
         }
     }

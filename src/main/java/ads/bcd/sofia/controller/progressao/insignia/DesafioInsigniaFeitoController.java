@@ -66,7 +66,7 @@ public class DesafioInsigniaFeitoController {
     }
 
     public void getInsigniaByJovem() {
-        System.out.println("Consultar Especialidades de um Determinado Jovem\n");
+        System.out.println("Consultar Insígnias de um Determinado Jovem\n");
         Jovem jovem = jovemController.selectJovem();
         List<DesafioInsigniaFeita> desafios = service.getDesafioInsigniaByJovemId(jovem.getIdJovem());
 
@@ -78,7 +78,7 @@ public class DesafioInsigniaFeitoController {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MMM yyyy", Locale.ENGLISH);
 
         Table.TableBuilder table = Table.createTable();
-        table.setTitle("ESPECIALIDADES DE " + jovem.getNome().split("0", 1)[0].toUpperCase());
+        table.setTitle("INSÍGNIAS DE " + jovem.getNome().toUpperCase());
         table.addColumn("Desafio", 30);
         table.addColumn("Insígnia", 10);
         table.addColumn("Conclusão", 15);

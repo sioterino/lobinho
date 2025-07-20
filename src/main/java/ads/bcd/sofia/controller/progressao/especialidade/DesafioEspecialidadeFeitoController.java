@@ -77,7 +77,7 @@ public class DesafioEspecialidadeFeitoController {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MMM yyyy", Locale.ENGLISH);
 
         Table.TableBuilder table = Table.createTable();
-        table.setTitle("ESPECIALIDADES DE " + jovem.getNome().split("0", 1)[0].toUpperCase());
+        table.setTitle("ESPECIALIDADES DE " + jovem.getNome().toUpperCase());
         table.addColumn("Desafio", 30);
         table.addColumn("Especialidade", 20);
         table.addColumn("Conclusão", 15);
