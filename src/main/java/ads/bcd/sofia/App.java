@@ -1,6 +1,8 @@
 package ads.bcd.sofia;
 
 
+import ads.bcd.sofia.controller.atividade.AcampamentosController;
+import ads.bcd.sofia.controller.atividade.NoiteAcampadaController;
 import ads.bcd.sofia.controller.pessoa.JovemController;
 import ads.bcd.sofia.controller.progressao.distintivo.DesafioDistintivoFeitoController;
 import ads.bcd.sofia.controller.progressao.especialidade.DesafioEspecialidadeFeitoController;
@@ -23,6 +25,7 @@ public class App {
     private DesafioEspecialidadeFeitoController desafioEspecialidadeFeitoController;
     private DesafioInsigniaFeitoController desafioInsigniaFeitoController;
     private DesafioDistintivoFeitoController desafioDistintivoFeitoController;
+    private NoiteAcampadaController acampadaController;
 
     public void landingPage() {
         System.out.println(Menus.HELLO);
@@ -43,7 +46,10 @@ public class App {
                 case 4 -> desafioEspecialidadeFeitoController.create();
                 case 5 -> desafioInsigniaFeitoController.create();
                 case 6 -> desafioDistintivoFeitoController.create();
-                case 7 -> System.out.println("Registrar ( Participação em Atividade ).");
+                case 7 -> {
+                    acampadaController.printAll();
+                    acampadaController.create();
+                }
                 case 8 -> logMenu();
             }
         }

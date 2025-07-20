@@ -9,11 +9,11 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "Acampamento", schema = "sofiadb")
+@Table(name = "Acampamentos", schema = "sofiadb")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Acampamento implements Serializable {
+public class Acampamentos implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -21,7 +21,7 @@ public class NoiteAcampada implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "idAcampamento", nullable = false)
-    private Acampamento acampamento;
+    private Acampamentos acampamentos;
 
     @ManyToOne
     @JoinColumn(name = "idJovem", nullable = false)
