@@ -2,6 +2,7 @@ package ads.bcd.sofia;
 
 
 import ads.bcd.sofia.controller.pessoa.JovemController;
+import ads.bcd.sofia.controller.progressao.especialidade.DesafioEspecialidadeFeitoController;
 import ads.bcd.sofia.utils.Input;
 import ads.bcd.sofia.utils.enums.Menus;
 import lombok.AllArgsConstructor;
@@ -15,7 +16,9 @@ public class App {
 
     private final Scanner scanner;
     private final Input input;
+
     private JovemController jovemController;
+    private DesafioEspecialidadeFeitoController desafioEspecialidadeFeitoController;
 
     public void landingPage() {
         System.out.println(Menus.HELLO);
@@ -33,12 +36,11 @@ public class App {
                 case 1 -> jovemController.create();
                 case 2 -> jovemController.update();
                 case 3 -> jovemController.printAll();
-                case 4 -> System.out.println("Cadastrar Especialidade");
-                case 5 -> System.out.println("Registrar Requisito Cumprido Especialidade");
-                case 6 -> System.out.println("Cadastrar Insignia para Jovem");
-                case 7 -> System.out.println("Cadastrar Distintivo para Jovem");
-                case 8 -> System.out.println("Registrar Particiação em Acampamento");
-                case 9 -> logMenu();
+                case 4 -> desafioEspecialidadeFeitoController.create();
+                case 5 -> System.out.println("Registrar ( Insígnia de Interesse ) para Jovem.");
+                case 6 -> System.out.println("Registrar ( Distintivo de Progressão ) para Jovem.");
+                case 7 -> System.out.println("Registrar ( Participação em Atividade ).");
+                case 8 -> logMenu();
             }
         }
     }
@@ -51,10 +53,10 @@ public class App {
             switch (page) {
                 case 0 -> mainMenu();
                 case 1 -> jovemController.printAll();
-                case 2 -> System.out.println("Atualizar Jovem");
-                case 3 -> System.out.println("Consultar Jovem");
-                case 4 -> System.out.println("Cadastrar Especialidade");
-                case 5 -> System.out.println("Registrar Requisito Cumprido Especialidade");
+                case 2 -> System.out.println("Jovens com determinada ( Especialidade ).");
+                case 3 -> System.out.println("( Especialidades e Insígnias ) de um Jovem.");
+                case 4 -> System.out.println("( Requisitos de Especialidade ) cumpridos por um Jovem.");
+                case 5 -> System.out.println("Jovens Aptos ao ( Cruzeiro do Sul ).");
             }
         }
     }

@@ -56,7 +56,6 @@ public class JovemController {
         table.print();
     }
 
-
     public void create() {
         System.out.println("Cadastro de Novo Jovem\n");
         Jovem jovem = new Jovem();
@@ -75,6 +74,7 @@ public class JovemController {
     }
 
     public void update() {
+        System.out.println("Atualização de Dados Cadastrais de um Jovem\n");
         printAll();
         System.out.println("\nSelecione um jovem para atulizar.");
         int idJovem = input.getId(size());
@@ -134,6 +134,7 @@ public class JovemController {
         int idTipo = input.getId(tipoSanguineoController.size());
         TipoSanguineo tipo = tipoSanguineoController.getById(idTipo);
         jovem.setTipoSanguineo(tipo);
+        System.out.println("Você selecionou: " + tipo.getTipo() + ".");
     }
 
     private void updateVinculo(Jovem jovem) {
@@ -150,6 +151,7 @@ public class JovemController {
 
         vinculo.setJovem(jovem);
         vinculo.setResponsavel(responsavel);
+        System.out.println("Você selecionou: " + vinculo.getResponsavel().getNome() + ".");
     }
 
 }

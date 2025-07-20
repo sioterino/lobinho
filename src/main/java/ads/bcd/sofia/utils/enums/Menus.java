@@ -41,19 +41,15 @@ public enum Menus {
                                               │    ■  [ 3 ] Consultar.                                           │
                                               │                                                                  │
                      ┌────────────────────┐   ├──────────────────────────────────────────────────────────────────┤
-                     │  [ ESPECIALIDADE ] │   │                                                                  │
-                     └────────────────────┘   │    ■  [ 4 ] Cadastrar Especialidade para Jovem.                  │
-                                              │    ■  [ 5 ] Registrar ( Requisito Comprido ).                    │
-                                              │                                                                  │
-                     ┌────────────────────┐   ├──────────────────────────────────────────────────────────────────┤
                      │   [ ATIVIDADES ]   │   │                                                                  │
-                     └────────────────────┘   │    ■  [ 6 ] Registrar ( Insígnia de Interesse ) para Jovem.      │
-                                              │    ■  [ 7 ] Registrar ( Distintivo de Progressão ) para Jovem.   │
-                                              │    ■  [ 8 ] Registrar ( Participação em Atividade ).             │
+                     └────────────────────┘   │    ■  [ 4 ] Registrar ( Requisito Comprido ).                    │
+                                              │    ■  [ 5 ] Registrar ( Insígnia de Interesse ) para Jovem.      │
+                                              │    ■  [ 6 ] Registrar ( Distintivo de Progressão ) para Jovem.   │
+                                              │    ■  [ 7 ] Registrar ( Participação em Atividade ).             │
                                               │                                                                  │
                      ┌────────────────────┐   ├──────────────────────────────────────────────────────────────────┤
                      │    [ PÁGINAS ]     │   │                                                                  │
-                     └────────────────────┘   │    ■  [ 9 ] Consulta de ( Relatórios ).                          │
+                     └────────────────────┘   │    ■  [ 8 ] Consulta de ( Relatórios ).                          │
                                               │    ■  [ 0 ] Terminar programa.                                   │
                                               │                                                                  │
                                               └──────────────────────────────────────────────────────────────────┘
