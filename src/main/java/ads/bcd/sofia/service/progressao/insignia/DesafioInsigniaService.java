@@ -1,6 +1,7 @@
 package ads.bcd.sofia.service.progressao.insignia;
 
 import ads.bcd.sofia.model.progressao.insignia.DesafioInsignia;
+import ads.bcd.sofia.model.progressao.insignia.DesafioInsigniaFeita;
 import ads.bcd.sofia.repository.progressao.insignia.DesafioInsigniaRepository;
 import ads.bcd.sofia.service.ServiceInterface;
 import lombok.AllArgsConstructor;

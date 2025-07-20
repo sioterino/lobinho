@@ -173,7 +173,7 @@ CREATE TABLE IF NOT EXISTS sofiadb.DesafioEspecialidadeFeita (
     ON DELETE NO ACTION ON UPDATE CASCADE
 );
 
-CREATE TABLE IF NOT EXISTS sofiadb.Acampamento (
+CREATE TABLE IF NOT EXISTS sofiadb.Acampamentos (
 	idAcampamento INT NOT NULL AUTO_INCREMENT,
 	nome VARCHAR(255) NOT NULL,
     data DATETIME NOT NULL,
@@ -191,7 +191,7 @@ CREATE TABLE IF NOT EXISTS sofiadb.NoiteAcampada (
     INDEX idx_idJovem (idJovem),
 
     CONSTRAINT fk_NoiteAcampada_Acampamento FOREIGN KEY (idAcampamento)
-    REFERENCES sofiadb.Acampamento (idAcampamento)
+    REFERENCES sofiadb.Acampamentos (idAcampamento)
     ON DELETE CASCADE ON UPDATE CASCADE,
 
     CONSTRAINT fk_NoiteAcampada_Jovem FOREIGN KEY (idJovem)
@@ -322,7 +322,7 @@ INSERT INTO DesafioDistintivo (descricao, idDistintivo) VALUES
 ('Concluir requisito final', 5);
 
 -- ACAMPAMENTO
-INSERT INTO Acampamento (nome, data) VALUES
+INSERT INTO Acampamentos (nome, data) VALUES
 ('Acampamento da Lua', '2025-04-20'),
 ('Trilha do Lobinho', '2025-06-10');
 

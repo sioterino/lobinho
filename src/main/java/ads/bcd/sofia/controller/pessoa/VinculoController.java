@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Controller
 @AllArgsConstructor
@@ -53,12 +54,14 @@ public class VinculoController {
         service.save(entidade);
     }
 
-    public Vinculo getVinculoByIdJovem(int id) {
+    public Vinculo selectVinculoByIdJovem(int id) {
         List<Vinculo> vinculos = service.getVinculoByIdJovem(id);
         printAll(vinculos);
         System.out.println("Selecione um vínculo para editar.");
-        int idVinculo = input.getInteger(vinculos.getFirst().getIdVinculo(), vinculos.getLast().getIdVinculo());
-        return getById(idVinculo);
+        int idVinculo = input.getId(vinculos.stream().map(Vinculo::getIdVinculo).collect(Collectors.toList()));
+        Vinculo vinculo = getById(idVinculo);
+        System.out.println("Voce selecionou: " + vinculo.getIdVinculo() + ".");
+        return vinculo;
     }
 
     public Vinculo getById(int id) {

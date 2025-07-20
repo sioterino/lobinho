@@ -2,18 +2,21 @@ package ads.bcd.sofia.controller.progressao.distintivo;
 
 import ads.bcd.sofia.model.progressao.distintivo.DesafioDistintivo;
 import ads.bcd.sofia.service.progressao.distintivo.DesafioDistintivoService;
+import ads.bcd.sofia.utils.Input;
 import ads.bcd.sofia.utils.Table;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Controller
 @AllArgsConstructor
 public class DesafioDistintivoController {
 
     private DesafioDistintivoService service;
+    private Input input;
 
     public void print(List<DesafioDistintivo> desafios) {
         if (desafios.isEmpty()) {
@@ -41,6 +44,17 @@ public class DesafioDistintivoController {
         return desafio.get();
     }
 
-    public int size() { return service.findAll().size(); }
+    public List<Integer> getAllIds() {
+        return service.findAll().stream().map(DesafioDistintivo::getIdDesafioDistintivo).collect(Collectors.toList());
+    }
+
+    public DesafioDistintivo selectDesafioDistintivo() {
+        printAll();
+        System.out.println("Selecione um Desafio de Distintivo.");
+        int idRequisito = input.getId(getAllIds());
+        DesafioDistintivo desafio = getById(idRequisito);
+        System.out.println("Você selecionou: " + desafio.getDescricao() + ".");
+        return desafio;
+    }
 
 }

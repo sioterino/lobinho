@@ -2,7 +2,6 @@ package ads.bcd.sofia.controller.pessoa;
 
 import ads.bcd.sofia.controller.saude.TipoSanguineoController;
 import ads.bcd.sofia.model.pessoa.Jovem;
-import ads.bcd.sofia.model.pessoa.Responsavel;
 import ads.bcd.sofia.model.pessoa.Vinculo;
 import ads.bcd.sofia.model.saude.TipoSanguineo;
 import ads.bcd.sofia.service.pessoa.JovemService;
@@ -16,6 +15,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Locale;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Controller
 @AllArgsConstructor
@@ -27,8 +27,7 @@ public class JovemController {
     private final TipoSanguineoController tipoSanguineoController;
     private final VinculoController vinculoController;
 
-    public void printAll() {
-        List<Jovem> jovens = service.findAll();
+    public void print(List<Jovem> jovens) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MMM yyyy", Locale.ENGLISH);
 
         if (jovens.isEmpty()) {
@@ -56,6 +55,25 @@ public class JovemController {
         table.print();
     }
 
+    public void printAll() { print(service.findAll()); }
+
+    public void simplePrint(List<Jovem> jovens) {
+        if (jovens.isEmpty()) {
+            System.out.println("Não há jovens cadastrados ainda.\n");
+            return;
+        }
+
+        Table.TableBuilder table = Table.createTable();
+        table.setTitle("JOVENS");
+        table.addColumn("ID", 5);
+        table.addColumn("Nome", 20);
+        for (Jovem j : jovens)
+            table.addRow(String.valueOf(j.getIdJovem()), j.getNome());
+        table.print();
+    }
+
+    public void simplePrintAll() { simplePrint(service.findAll()); }
+
     public void create() {
         System.out.println("Cadastro de Novo Jovem\n");
         Jovem jovem = new Jovem();
@@ -70,32 +88,41 @@ public class JovemController {
 
         service.save(jovem);
         vinculoController.save(vinculo);
-        printAll();
+        print(List.of(jovem));
     }
 
     public void update() {
         System.out.println("Atualização de Dados Cadastrais de um Jovem\n");
-        printAll();
-        System.out.println("\nSelecione um jovem para atulizar.");
-        int idJovem = input.getId(size());
-        Jovem jovem = getById(idJovem);
 
-        System.out.println(Menus.JOVEM_UPDATE);
+        Jovem jovem = selectJovem();
+        while (true) {
 
-        int option = input.getInteger(6);
+            System.out.println(Menus.JOVEM_UPDATE);
+            int option = input.getInteger(7);
 
-        switch (option) {
-            case 0 -> { return; }
-            case 1 -> setName(jovem);
-            case 2 -> setDataNascimento(jovem);
-            case 3 -> setEmail(jovem);
-            case 4 -> setTelefone(jovem);
-            case 5 -> setTipoSanguineo(jovem);
-            case 6 -> updateVinculo(jovem);
+            switch (option) {
+                case 0 -> { return; }
+                case 1 -> setName(jovem);
+                case 2 -> setDataNascimento(jovem);
+                case 3 -> setEmail(jovem);
+                case 4 -> setTelefone(jovem);
+                case 5 -> setTipoSanguineo(jovem);
+                case 6 -> updateVinculo(jovem);
+                case 7 -> jovem = selectJovem();
+            }
+
+            service.save(jovem);
+            print(List.of(jovem));
         }
+    }
 
-        service.save(jovem);
-        printAll();
+    public Jovem selectJovem() {
+        simplePrintAll();
+        System.out.println("Selecione um Jovem.");
+        int idJovem = input.getId(getAllIds());
+        Jovem jovem = getById(idJovem);
+        System.out.println("Você selecionou: " + jovem.getNome() + ".");
+        return jovem;
     }
 
     public Jovem getById(int id) {
@@ -104,8 +131,8 @@ public class JovemController {
         return jovem.get();
     }
 
-    public int size() {
-        return service.findAll().size();
+    public List<Integer> getAllIds() {
+        return service.findAll().stream().map(Jovem::getIdJovem).collect(Collectors.toList());
     }
 
     private void setName(Jovem jovem) {
@@ -129,29 +156,19 @@ public class JovemController {
     }
 
     private void setTipoSanguineo(Jovem jovem) {
-        tipoSanguineoController.printAll();
-        System.out.println("\nEscolha um tipo sanguíneo.");
-        int idTipo = input.getId(tipoSanguineoController.size());
-        TipoSanguineo tipo = tipoSanguineoController.getById(idTipo);
+        TipoSanguineo tipo = tipoSanguineoController.selectTipoSanguineo();
         jovem.setTipoSanguineo(tipo);
-        System.out.println("Você selecionou: " + tipo.getTipo() + ".");
     }
 
     private void updateVinculo(Jovem jovem) {
-        Vinculo vinculo = vinculoController.getVinculoByIdJovem(jovem.getIdJovem());
+        Vinculo vinculo = vinculoController.selectVinculoByIdJovem(jovem.getIdJovem());
         setVinculo(jovem, vinculo);
         vinculoController.save(vinculo);
     }
 
     private void setVinculo(Jovem jovem, Vinculo vinculo) {
-        responsavelController.printAll();
-        System.out.println("\nEscolha um responsável.");
-        int idResponsavel = input.getId(responsavelController.size());
-        Responsavel responsavel = responsavelController.getById(idResponsavel);
-
         vinculo.setJovem(jovem);
-        vinculo.setResponsavel(responsavel);
-        System.out.println("Você selecionou: " + vinculo.getResponsavel().getNome() + ".");
+        vinculo.setResponsavel(responsavelController.selectResponsavel());
     }
 
 }

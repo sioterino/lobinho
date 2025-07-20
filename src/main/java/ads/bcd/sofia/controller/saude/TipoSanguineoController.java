@@ -2,18 +2,21 @@ package ads.bcd.sofia.controller.saude;
 
 import ads.bcd.sofia.model.saude.TipoSanguineo;
 import ads.bcd.sofia.service.saude.TipoSanguineoService;
+import ads.bcd.sofia.utils.Input;
 import ads.bcd.sofia.utils.Table;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Controller
 @AllArgsConstructor
 public class TipoSanguineoController {
 
     private final TipoSanguineoService service;
+    private final Input input;
 
     public void printAll() {
 
@@ -42,8 +45,17 @@ public class TipoSanguineoController {
         return tipo.get();
     }
 
-    public int size() {
-        return service.findAll().size();
+    public List<Integer> getAllIds() {
+        return service.findAll().stream().map(TipoSanguineo::getIdTipoSanguineo).collect(Collectors.toList());
+    }
+
+    public TipoSanguineo selectTipoSanguineo() {
+        printAll();
+        System.out.println("\nEscolha um tipo sanguíneo.");
+        int idTipo = input.getId(getAllIds());
+        TipoSanguineo tipo = getById(idTipo);
+        System.out.println("Você selecionou: " + tipo.getTipo() + ".");
+        return tipo;
     }
 
 }

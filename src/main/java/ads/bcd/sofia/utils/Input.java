@@ -6,6 +6,7 @@ import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 import java.util.Scanner;
 
 @Component
@@ -18,14 +19,25 @@ public class Input {
         this.scanner = scanner;
     }
 
-    public Integer getId(int max) {
-        return getInteger(1, max);
+    public Integer getId(List<Integer> validIds) {
+        while (true) {
+            String input = this.get();
+            if (input.isBlank()) continue;
+
+            try {
+                int id = Integer.parseInt(input);
+                if (validIds.contains(id)) return id;
+                System.out.println("ID inválido. Selecione um dos IDs na tabela.\n");
+            } catch (NumberFormatException e) {
+                System.out.println("Insira um valor numérico.\n");
+            }
+        }
     }
 
     public Integer getInteger(int max) {
         return getInteger(0, max);
     }
-    
+
     public Integer getInteger(int min, int max) {
         while (true) {
             String input = this.get();
@@ -62,6 +74,7 @@ public class Input {
                 return LocalDateTime.parse(input + " 00:00", f);
             } catch (Exception e) {
                 System.out.println("Formato incorreto.\n");
+                System.out.print("> ");
             }
         }
     }

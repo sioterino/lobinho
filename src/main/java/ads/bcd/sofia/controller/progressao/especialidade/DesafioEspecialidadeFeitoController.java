@@ -28,7 +28,6 @@ public class DesafioEspecialidadeFeitoController {
             System.out.println("Não há requisitos de especialidade concluídos cadastrados.");
             return;
         }
-
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MMM yyyy", Locale.ENGLISH);
 
         Table.TableBuilder table = Table.createTable();
@@ -51,22 +50,12 @@ public class DesafioEspecialidadeFeitoController {
 
     public void create() {
         System.out.println("Registro de Jovem que Completou Requisito para Especialidade\n");
-
         DesafioEspecialidadeFeita def = new DesafioEspecialidadeFeita();
 
-        jovemController.printAll();
-        System.out.println("Selecione um Jovem.");
-        int idJovem = input.getId(jovemController.size());
-        Jovem jovem = jovemController.getById(idJovem);
+        Jovem jovem = jovemController.selectJovem();
         def.setJovem(jovem);
-        System.out.println("Você selecionou: " + jovem.getNome() + ".");
-
-        desafioEspecialidadeController.printAll();
-        System.out.println("Selecione um Requisito de Especialidade.");
-        int idRequisito = input.getId(desafioEspecialidadeController.size());
-        DesafioEspecialidade desafio = desafioEspecialidadeController.getById(idRequisito);
+        DesafioEspecialidade desafio = desafioEspecialidadeController.selectDesafioEspecialidade();
         def.setDesafioEspecialidade(desafio);
-        System.out.println("Você selecionou: " + desafio.getNome() + ".");
 
         System.out.print("Data de conslusão (yyyy-MM-dd): ");
         def.setData(input.getDate());
@@ -75,4 +64,28 @@ public class DesafioEspecialidadeFeitoController {
         printAll();
     }
 
+    public void getEspecialidadeByJovem() {
+        System.out.println("Consultar Especialidades de um Determinado Jovem\n");
+        Jovem jovem = jovemController.selectJovem();
+        List<DesafioEspecialidadeFeita> desafios = service.getDesafioEspecialidadeByJovemId(jovem.getIdJovem());
+
+        if (desafios.isEmpty()) {
+            System.out.println("Não há especialidades cadastradas para esse jovem.");
+            return;
+        }
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MMM yyyy", Locale.ENGLISH);
+
+        Table.TableBuilder table = Table.createTable();
+        table.setTitle("ESPECIALIDADES DE " + jovem.getNome().split("0", 1)[0].toUpperCase());
+        table.addColumn("Desafio", 30);
+        table.addColumn("Especialidade", 20);
+        table.addColumn("Conclusão", 15);
+
+        for (DesafioEspecialidadeFeita def : desafios)
+            table.addRow(def.getDesafioEspecialidade().getNome(),
+                def.getDesafioEspecialidade().getEspecialidade().getNome(),
+                def.getData().format(formatter));
+        table.print();
+    }
 }

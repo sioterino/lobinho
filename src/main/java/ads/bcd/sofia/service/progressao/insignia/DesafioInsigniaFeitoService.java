@@ -29,4 +29,8 @@ public class DesafioInsigniaFeitoService implements ServiceInterface<DesafioInsi
     }
 
     public void save(DesafioInsigniaFeita entity) { repo.save(entity); }
+
+    public List<DesafioInsigniaFeita> getDesafioInsigniaByJovemId(Integer id) {
+        return repo.findByJovem_idJovem(id);
+    }
 }

@@ -61,9 +61,10 @@ public enum Menus {
                      ┌────────────────────┐   ├────────────────────────────────────────────────────────────────────────┤
                      │   [ RELATÓRIOS ]   │   │                                                                        │
                      └────────────────────┘   │    ■  [ 1 ] Jovens com determinada ( Especialidade ).                  │
-                                              │    ■  [ 2 ] ( Especialidades e Insígnias ) de um Jovem.                │
-                                              │    ■  [ 3 ] ( Requisitos de Especialidade ) cumpridos por um Jovem.    │
-                                              │    ■  [ 4 ] Jovens Aptos ao ( Cruzeiro do Sul ).                       │
+                                              │    ■  [ 2 ] Jovens com determinada ( Insígnia ).                       │
+                                              │    ■  [ 3 ] Jovens com determinado ( Distintivo ).                     │
+                                              │    ■  [ 4 ] ( Especialida, Insígnia e Distintivos ) de um Jovem.       │
+                                              │    ■  [ 5 ] Jovens Aptos ao ( Cruzeiro do Sul ).                       │
                                               │                                                                        │
                      ┌────────────────────┐   ├────────────────────────────────────────────────────────────────────────┤
                      │   [ CONSULTAS ]    │   │                                                                        │
@@ -81,22 +82,23 @@ public enum Menus {
             """),
 
     JOVEM_UPDATE("""
-                                             ┌────────────────────────────────────────────────────────────────────┐
-                                             │                [ ATUALIZAR DADOS CADASTRAIS DE JOVEM ]             │
-                     ┌───────────────────┐   ├────────────────────────────────────────────────────────────────────┤
-                     │    [ OPÇÕES ]     │   │                                                                    │
-                     └───────────────────┘   │    ■  [ 1 ] Atualizar ( Nome ) de Jovem.                           │
-                                             │    ■  [ 2 ] Atualizar ( Data de Nascimento ) de Jovem.             │
-                                             │    ■  [ 3 ] Atualizar ( Email ) de Jovem.                          │
-                                             │    ■  [ 4 ] Atualizar ( Telefone ) de Jovem.                       │
-                                             │    ■  [ 5 ] Atualizar ( Tipo Sanguíneo ) de Jovem.                 │
-                                             │    ■  [ 6 ] Atualizar ( Responsável ) de Jovem.                    │
-                                             │                                                                    │
-                     ┌───────────────────┐   ├────────────────────────────────────────────────────────────────────┤
-                     │    [ PÁGINAS ]    │   │                                                                    │
-                     └───────────────────┘   │    ■  [ 0 ] Voltar ao ( Menu Principal ).                          │
-                                             │                                                                    │
-                                             └────────────────────────────────────────────────────────────────────┘
+                                             ┌───────────────────────────────────────────────────────────────────┐
+                                             │              [ ATUALIZAR DADOS CADASTRAIS DE JOVEM ]              │
+                     ┌───────────────────┐   ├───────────────────────────────────────────────────────────────────┤
+                     │    [ OPÇÕES ]     │   │                                                                   │
+                     └───────────────────┘   │    ■  [ 1 ] Atualizar ( Nome ) de Jovem.                          │
+                                             │    ■  [ 2 ] Atualizar ( Data de Nascimento ) de Jovem.            │
+                                             │    ■  [ 3 ] Atualizar ( Email ) de Jovem.                         │
+                                             │    ■  [ 4 ] Atualizar ( Telefone ) de Jovem.                      │
+                                             │    ■  [ 5 ] Atualizar ( Tipo Sanguíneo ) de Jovem.                │
+                                             │    ■  [ 6 ] Atualizar ( Responsável ) de Jovem.                   │
+                                             │                                                                   │
+                     ┌───────────────────┐   ├───────────────────────────────────────────────────────────────────┤
+                     │    [ PÁGINAS ]    │   │                                                                   │
+                     └───────────────────┘   │    ■  [ 7 ] Selecionar outro ( Jovem ) para editar.               │
+                                             │    ■  [ 0 ] Voltar ao ( Menu Principal ).                         │
+                                             │                                                                   │
+                                             └───────────────────────────────────────────────────────────────────┘
             """),
 
     INPUT("> ");

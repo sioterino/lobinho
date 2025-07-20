@@ -4,8 +4,6 @@ import ads.bcd.sofia.controller.pessoa.JovemController;
 import ads.bcd.sofia.model.atividade.Acampamentos;
 import ads.bcd.sofia.model.atividade.NoiteAcampada;
 import ads.bcd.sofia.model.pessoa.Jovem;
-import ads.bcd.sofia.model.progressao.distintivo.DesafioDistintivo;
-import ads.bcd.sofia.model.progressao.distintivo.DesafioDistintivoFeita;
 import ads.bcd.sofia.service.atividade.NoiteAcampadaService;
 import ads.bcd.sofia.utils.Input;
 import ads.bcd.sofia.utils.Table;
@@ -21,7 +19,6 @@ import java.util.Locale;
 public class NoiteAcampadaController {
 
     private NoiteAcampadaService service;
-    private Input input;
 
     private JovemController jovemController;
     private AcampamentosController acampamentosController;
@@ -51,23 +48,14 @@ public class NoiteAcampadaController {
 
     public void create() {
         System.out.println("Registro de Jovem que Participou de um Acampamento\n");
-
         NoiteAcampada na = new NoiteAcampada();
 
-        jovemController.printAll();
-        System.out.println("Selecione um Jovem.");
-        int idJovem = input.getId(jovemController.size());
-        Jovem jovem = jovemController.getById(idJovem);
+        Jovem jovem = jovemController.selectJovem();
         na.setJovem(jovem);
-        System.out.println("Você selecionou: " + jovem.getNome() + ".");
-
-        acampamentosController.printAll();
-        System.out.println("Selecione um Acampamento.");
-        int idRequisito = input.getId(acampamentosController.size());
-        Acampamentos acampamentos = acampamentosController.getById(idRequisito);
-        na.setAcampamentos(acampamentos);
-        System.out.println("Você selecionou: " + acampamentos.getNome() + ".");
+        Acampamentos acampamento = acampamentosController.selectAcampamento();
+        na.setAcampamentos(acampamento);
 
         service.save(na);
-        printAll();}
+        printAll();
+    }
 }

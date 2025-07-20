@@ -53,19 +53,10 @@ public class DesafioInsigniaFeitoController {
 
         DesafioInsigniaFeita dif = new DesafioInsigniaFeita();
 
-        jovemController.printAll();
-        System.out.println("Selecione um Jovem.");
-        int idJovem = input.getId(jovemController.size());
-        Jovem jovem = jovemController.getById(idJovem);
+        Jovem jovem = jovemController.selectJovem();
         dif.setJovem(jovem);
-        System.out.println("Você selecionou: " + jovem.getNome() + ".");
-
-        desafioInsigniaController.printAll();
-        System.out.println("Selecione um Desafio de Insígnia.");
-        int idRequisito = input.getId(desafioInsigniaController.size());
-        DesafioInsignia desafio = desafioInsigniaController.getById(idRequisito);
+        DesafioInsignia desafio = desafioInsigniaController.selectDesafioInsignia();
         dif.setDesafioInsignia(desafio);
-        System.out.println("Você selecionou: " + desafio.getNome() + ".");
 
         System.out.print("Data de conslusão (yyyy-MM-dd): ");
         dif.setData(input.getDate());
@@ -74,4 +65,27 @@ public class DesafioInsigniaFeitoController {
         printAll();
     }
 
+    public void getInsigniaByJovem() {
+        System.out.println("Consultar Especialidades de um Determinado Jovem\n");
+        Jovem jovem = jovemController.selectJovem();
+        List<DesafioInsigniaFeita> desafios = service.getDesafioInsigniaByJovemId(jovem.getIdJovem());
+
+        if (desafios.isEmpty()) {
+            System.out.println("Não há insígnias cadastradas para esse jovem.");
+            return;
+        }
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MMM yyyy", Locale.ENGLISH);
+
+        Table.TableBuilder table = Table.createTable();
+        table.setTitle("ESPECIALIDADES DE " + jovem.getNome().split("0", 1)[0].toUpperCase());
+        table.addColumn("Desafio", 30);
+        table.addColumn("Insígnia", 10);
+        table.addColumn("Conclusão", 15);
+        for (DesafioInsigniaFeita dif : desafios)
+            table.addRow(dif.getDesafioInsignia().getNome(),
+                    dif.getDesafioInsignia().getInsignia().getNome(),
+                    dif.getData().format(formatter));
+        table.print();
+    }
 }

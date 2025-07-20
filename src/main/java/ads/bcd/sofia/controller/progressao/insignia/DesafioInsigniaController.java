@@ -2,18 +2,21 @@ package ads.bcd.sofia.controller.progressao.insignia;
 
 import ads.bcd.sofia.model.progressao.insignia.DesafioInsignia;
 import ads.bcd.sofia.service.progressao.insignia.DesafioInsigniaService;
+import ads.bcd.sofia.utils.Input;
 import ads.bcd.sofia.utils.Table;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Controller
 @AllArgsConstructor
 public class DesafioInsigniaController {
 
     private DesafioInsigniaService service;
+    private Input input;
 
     public void print(List<DesafioInsignia> desafios) {
         if (desafios.isEmpty()) {
@@ -41,6 +44,17 @@ public class DesafioInsigniaController {
         return desafio.get();
     }
 
-    public int size() { return service.findAll().size(); }
+    public List<Integer> getAllIds() {
+        return service.findAll().stream().map(DesafioInsignia::getIdDesafioInsignia).collect(Collectors.toList());
+    }
+
+    public DesafioInsignia selectDesafioInsignia() {
+        printAll();
+        System.out.println("Selecione um Desafio de Insígnia.");
+        int idRequisito = input.getId(getAllIds());
+        DesafioInsignia desafio = getById(idRequisito);
+        System.out.println("Você selecionou: " + desafio.getNome() + ".");
+        return desafio;
+    }
 
 }

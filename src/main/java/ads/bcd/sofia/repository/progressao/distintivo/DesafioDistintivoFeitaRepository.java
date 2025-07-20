@@ -5,5 +5,11 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
+import java.util.List;
+
 @RepositoryRestResource(collectionResourceRel = "desafios-distintivo-feito", path = "desafios-distintivo-feito")
-public interface DesafioDistintivoFeitaRepository extends PagingAndSortingRepository<DesafioDistintivoFeita, Integer>, CrudRepository<DesafioDistintivoFeita, Integer> {}
+public interface DesafioDistintivoFeitaRepository extends PagingAndSortingRepository<DesafioDistintivoFeita, Integer>, CrudRepository<DesafioDistintivoFeita, Integer> {
+
+    List<DesafioDistintivoFeita>  findByJovem_idJovem(Integer idJovem);
+
+}

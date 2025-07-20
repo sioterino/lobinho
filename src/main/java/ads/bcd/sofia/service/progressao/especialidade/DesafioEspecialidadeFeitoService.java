@@ -1,5 +1,6 @@
 package ads.bcd.sofia.service.progressao.especialidade;
 
+import ads.bcd.sofia.model.progressao.especialidade.DesafioEspecialidade;
 import ads.bcd.sofia.model.progressao.especialidade.DesafioEspecialidadeFeita;
 import ads.bcd.sofia.repository.progressao.especialidade.DesafioEspecialidadeFeitaRepository;
 import ads.bcd.sofia.service.ServiceInterface;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
@@ -30,6 +32,10 @@ public class DesafioEspecialidadeFeitoService implements ServiceInterface<Desafi
 
     public void save(DesafioEspecialidadeFeita entity) {
         repo.save(entity);
+    }
+
+    public List<DesafioEspecialidadeFeita> getDesafioEspecialidadeByJovemId(Integer id) {
+        return repo.findByJovem_idJovem(id);
     }
 
 }

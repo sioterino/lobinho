@@ -2,6 +2,7 @@ package ads.bcd.sofia.controller.atividade;
 
 import ads.bcd.sofia.model.atividade.Acampamentos;
 import ads.bcd.sofia.service.atividade.AcampamentosService;
+import ads.bcd.sofia.utils.Input;
 import ads.bcd.sofia.utils.Table;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -10,12 +11,14 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Locale;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Controller
 @AllArgsConstructor
 public class AcampamentosController {
 
     private AcampamentosService service;
+    private Input input;
 
     public void print(List<Acampamentos> acampamentos) {
         if (acampamentos.isEmpty()) {
@@ -45,6 +48,17 @@ public class AcampamentosController {
         return acampamento.get();
     }
 
-    public int size() { return service.findAll().size(); }
+    public List<Integer> getAllIds() {
+        return service.findAll().stream().map(Acampamentos::getIdAcampamento).collect(Collectors.toList());
+    }
+
+    public Acampamentos selectAcampamento() {
+        printAll();
+        System.out.println("Selecione um Acampamento.");
+        int idRequisito = input.getId(getAllIds());
+        Acampamentos acampamentos = getById(idRequisito);
+        System.out.println("Você selecionou: " + acampamentos.getNome() + ".");
+        return acampamentos;
+    }
 
 }
