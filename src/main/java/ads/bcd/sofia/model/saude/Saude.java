@@ -27,4 +27,7 @@ public class Saude implements Serializable {
     @JoinColumn(name = "idProblemaSaude", nullable = false)
     private ProblemaSaude problemaSaude;
 
+    @Column(length = 255)
+    private String observacoes;
+
 }

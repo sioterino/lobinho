@@ -26,12 +26,6 @@ public class Jovem implements Serializable {
     @Column(nullable = false)
     private LocalDateTime dataNascimento;
 
-    @Column(nullable = false, length = 45)
-    private String telefone;
-
-    @Column(nullable = false, length = 255)
-    private String email;
-
     @ManyToOne
     @JoinColumn(name = "idTipoSanguineo", nullable = false)
     private TipoSanguineo tipoSanguineo;

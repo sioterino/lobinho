@@ -64,6 +64,10 @@ public class Input {
         }
     }
 
+    public String getEmptyString() {
+        return scanner.nextLine().trim();
+    }
+
     public LocalDateTime getDate() {
         while(true) {
             String input = scanner.nextLine().trim();

@@ -18,9 +18,10 @@ public class ProblemaSaude implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idProblemaSaude;
 
-    @Column(nullable = false)
+    @Column(nullable = false, length = 255)
     private String tipoProblema;
 
+    @Column(length = 255)
     private String descricao;
 
 }

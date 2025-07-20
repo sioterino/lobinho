@@ -1,8 +1,11 @@
 package ads.bcd.sofia.controller.pessoa;
 
+import ads.bcd.sofia.controller.saude.ProblemaSaudeController;
+import ads.bcd.sofia.controller.saude.SaudeController;
 import ads.bcd.sofia.controller.saude.TipoSanguineoController;
 import ads.bcd.sofia.model.pessoa.Jovem;
 import ads.bcd.sofia.model.pessoa.Vinculo;
+import ads.bcd.sofia.model.saude.Saude;
 import ads.bcd.sofia.model.saude.TipoSanguineo;
 import ads.bcd.sofia.service.pessoa.JovemService;
 import ads.bcd.sofia.utils.Input;
@@ -26,6 +29,8 @@ public class JovemController {
     private final ResponsavelController responsavelController;
     private final TipoSanguineoController tipoSanguineoController;
     private final VinculoController vinculoController;
+    private final SaudeController saudeController;
+    private final ProblemaSaudeController problemaSaudeController;
 
     public void print(List<Jovem> jovens) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MMM yyyy", Locale.ENGLISH);
@@ -41,16 +46,24 @@ public class JovemController {
         table.addColumn("ID", 5);
         table.addColumn("Nome", 20);
         table.addColumn("Nascimento", 12);
-        table.addColumn("Email", 29);
-        table.addColumn("Telefone", 15);
         table.addColumn("Sangue", 6);
         table.addColumn("Responsável", 20);
+        table.addColumn("Problema Saúde", 15);
+        table.addColumn("Descrição", 30);
+        table.addColumn("Observações", 30);
 
-        for (Jovem j : jovens)
+        for (Jovem j : jovens) {
+            List<Saude> saudes = saudeController.getSaudesByJovemId(j.getIdJovem());
+            String problema = saudeController.joinTipos(saudes);
+            String descricao = saudeController.joinDescricoes(saudes);
+            String observacao = saudeController.joinObservacoes(saudes);
+
             table.addRow(
                     String.valueOf(j.getIdJovem()), j.getNome(), j.getDataNascimento().format(formatter),
-                    j.getEmail(), j.getTelefone(), j.getTipoSanguineo().getTipo(), vinculoController.getResponsavelNameByIdJovem(j.getIdJovem())
+                    j.getTipoSanguineo().getTipo(), vinculoController.getResponsavelNameByIdJovem(j.getIdJovem()),
+                    problema, descricao, observacao
             );
+        }
 
         table.print();
     }
@@ -81,10 +94,9 @@ public class JovemController {
 
         setName(jovem);
         setDataNascimento(jovem);
-        setEmail(jovem);
-        setTelefone(jovem);
         setTipoSanguineo(jovem);
         setVinculo(jovem, vinculo);
+        saudeController.create(jovem);
 
         service.save(jovem);
         vinculoController.save(vinculo);
@@ -104,11 +116,16 @@ public class JovemController {
                 case 0 -> { return; }
                 case 1 -> setName(jovem);
                 case 2 -> setDataNascimento(jovem);
-                case 3 -> setEmail(jovem);
-                case 4 -> setTelefone(jovem);
-                case 5 -> setTipoSanguineo(jovem);
-                case 6 -> updateVinculo(jovem);
-                case 7 -> jovem = selectJovem();
+                case 3 -> setTipoSanguineo(jovem);
+                case 4 -> updateVinculo(jovem);
+                case 5 -> {
+                    Vinculo vinculo = new Vinculo();
+                    setVinculo(jovem, vinculo);
+                    vinculoController.save(vinculo);
+                }
+                case 6 -> saudeController.update(jovem);
+                case 7 -> saudeController.create(jovem);
+                case 8 -> jovem = selectJovem();
             }
 
             service.save(jovem);
@@ -140,19 +157,9 @@ public class JovemController {
         jovem.setNome(input.getString());
     }
 
-    private void setTelefone(Jovem jovem) {
-        System.out.print("Telefone (xx) xxxxx-xxxx: ");
-        jovem.setTelefone(input.getString());
-    }
-
     private void setDataNascimento(Jovem jovem) {
         System.out.print("Data de Nascimento (yyyy-MM-dd): ");
         jovem.setDataNascimento(input.getDate());
-    }
-
-    private void setEmail(Jovem jovem) {
-        System.out.print("Email: ");
-        jovem.setEmail(input.getString());
     }
 
     private void setTipoSanguineo(Jovem jovem) {

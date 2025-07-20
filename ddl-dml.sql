@@ -17,8 +17,6 @@ CREATE TABLE IF NOT EXISTS sofiadb.Jovem (
 	idJovem INT NOT NULL AUTO_INCREMENT,
 	nome VARCHAR(255) NOT NULL,
     dataNascimento DATETIME NOT NULL,
-    telefone VARCHAR(45) NOT NULL,
-    email VARCHAR(255) NOT NULL,
     idTipoSanguineo INT NOT NULL,
 
     PRIMARY KEY (idJovem),
@@ -68,6 +66,7 @@ CREATE TABLE IF NOT EXISTS sofiadb.Saude (
 	id INT NOT NULL AUTO_INCREMENT,
 	idJovem INT NOT NULL,
     idProblemaSaude INT NOT NULL,
+    observacoes VARCHAR(255),
 
     PRIMARY KEY (id),
     INDEX idx_idJovem (idJovem),
@@ -273,6 +272,43 @@ INSERT INTO Vinculo (idJovem, idResponsavel) VALUES
 -- Joana é responsável por Ana, Felipe e Julia
 INSERT INTO Vinculo (idJovem, idResponsavel) VALUES
 (6, 3), (7, 3), (8, 3);
+
+-- Tipos de Problema de Saúde
+INSERT INTO ProblemaSaude (tipoProblema, descricao) VALUES
+('Alergia', 'Alergia a amendoim'),
+('Alergia', 'Alergia a picadas de insetos'),
+('Alergia', 'Alergia a medicamentos'),
+('Asma', 'Asma leve controlada com inalador'),
+('Asma', 'Asma crônica'),
+('Intolerância Alimentar', 'Intolerância à lactose'),
+('Intolerância Alimentar', 'Intolerância ao glúten (Doença Celíaca)'),
+('Problema Cardíaco', 'Sopro no coração'),
+('Saúde Mental', 'Ansiedade generalizada'),
+('Saúde Mental', 'TDAH - Transtorno de Déficit de Atenção e Hiperatividade'),
+('Outros', 'Miopia severa'),
+('Outros', 'Surdez parcial');
+
+-- Lucas Mendes (idJovem = 1) – has 2 problems
+INSERT INTO Saude (idJovem, idProblemaSaude, observacoes) VALUES
+(1, 1, 'Reação severa'),
+(1, 4, 'Usa inalador');
+
+-- Lara Mendes (idJovem = 2) – has 1 problem
+INSERT INTO Saude (idJovem, idProblemaSaude, observacoes) VALUES
+(2, 10, 'Diagnóstico desde os 6 anos');
+
+-- Pedro Oliveira (idJovem = 3) – has 2 problems
+INSERT INTO Saude (idJovem, idProblemaSaude, observacoes) VALUES
+(3, 2, NULL),
+(3, 6, 'Evita laticínios');
+
+-- Marina Oliveira (idJovem = 4) – has 1 problem
+INSERT INTO Saude (idJovem, idProblemaSaude, observacoes) VALUES
+(4, 8, 'Acompanha com cardiologista');
+
+-- Ana Pereira (idJovem = 6) – has 1 problem
+INSERT INTO Saude (idJovem, idProblemaSaude, observacoes) VALUES
+(6, 12, 'Usa aparelho auditivo');
 
 -- ÁREA DE CONHECIMENTO
 INSERT INTO AreaConhecimento (nome) VALUES

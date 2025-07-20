@@ -55,31 +55,56 @@ public enum Menus {
                                               └──────────────────────────────────────────────────────────────────┘
             """),
 
-    RELATORIOS("""
-                                              ┌────────────────────────────────────────────────────────────────────────┐
-                                              │                       [ LOBINHO : RELATÓRIOS ]                         │
-                     ┌────────────────────┐   ├────────────────────────────────────────────────────────────────────────┤
-                     │   [ RELATÓRIOS ]   │   │                                                                        │
-                     └────────────────────┘   │    ■  [ 1 ] Jovens com determinada ( Especialidade ).                  │
-                                              │    ■  [ 2 ] Jovens com determinada ( Insígnia ).                       │
-                                              │    ■  [ 3 ] Jovens com determinado ( Distintivo ).                     │
-                                              │    ■  [ 4 ] ( Especialida, Insígnia e Distintivos ) de um Jovem.       │
-                                              │    ■  [ 5 ] Jovens Aptos ao ( Cruzeiro do Sul ).                       │
-                                              │                                                                        │
-                     ┌────────────────────┐   ├────────────────────────────────────────────────────────────────────────┤
-                     │   [ CONSULTAS ]    │   │                                                                        │
-                     └────────────────────┘   │    ■  [ x ] Consultar ( Vínculos ).                                    │
-                                              │    ■  [ x ] Consultar ( Responsáveis ).                                │
-                                              │    ■  [ x ] Consultar ( Especialidades ).                              │
-                                              │    ■  [ x ] Consultar ( Áreas do Conhecimento ).                       │
-                                              │    ■  [ x ] Consultar ( Insígnias ).                                   │
-                                              │                                                                        │
-                     ┌────────────────────┐   ├────────────────────────────────────────────────────────────────────────┤
-                     │    [ PÁGINAS ]     │   │                                                                        │
-                     └────────────────────┘   │    ■  [ 0 ] Voltar ao ( Menu Principal ).                              │
-                                              │                                                                        │
-                                              └────────────────────────────────────────────────────────────────────────┘
-            """),
+        RELATORIOS("""
+                                                  ┌────────────────────────────────────────────────────────────────────────┐
+                                                  │                       [ LOBINHO : RELATÓRIOS ]                         │
+                         ┌────────────────────┐   ├────────────────────────────────────────────────────────────────────────┤
+                         │   [ RELATÓRIOS ]   │   │                                                                        │
+                         └────────────────────┘   │    ■  [ 1 ] Jovens com determinada ( Especialidade ).                  │
+                                                  │    ■  [ 2 ] Jovens com determinada ( Insígnia ).                       │
+                                                  │    ■  [ 3 ] Jovens com determinado ( Distintivo ).                     │
+                                                  │    ■  [ 4 ] Especialidades, Insígnias e Distintivos de um Jovem.       │
+                                                  │    ■  [ 5 ] Jovens Aptos ao ( Cruzeiro do Sul ).                       │
+                                                  │                                                                        │
+                                                  ├────────────────────────────────────────────────────────────────────────┤
+                         ┌────────────────────┐   │                                                                        │
+                         │   [ CONSULTAS ]    │   │    ■  [ 6 ] Consultar ( Jovens ).                                      │
+                         └────────────────────┘   │    ■  [ 7 ] Consultar ( Responsáveis ).                                │
+                                                  │    ■  [ 8 ] Consultar ( Vínculos ).                                    │
+                                                  │    ■  [ 9 ] Consultar ( Acampadas ).                                   │
+                                                  │    ■  [ 10 ] Consultar ( Noites de Acampada ).                         │
+                                                  │                                                                        │
+                                                  ├────────────────────────────────────────────────────────────────────────┤
+                         ┌────────────────────┐   │                                                                        │
+                         │ [ ESPECIALIDADES ] │   │    ■  [ 11 ] Consultar ( Especialidades ).                             │
+                         └────────────────────┘   │    ■  [ 12 ] Consultar ( Desafios de Especialidade ).                  │
+                                                  │    ■  [ 13 ] Consultar ( Desafios Feitos de Especialidade ).           │
+                                                  │                                                                        │
+                                                  ├────────────────────────────────────────────────────────────────────────┤
+                         ┌────────────────────┐   │                                                                        │
+                         │   [ INSÍGNIAS ]    │   │    ■  [ 14 ] Consultar ( Insígnias ).                                  │
+                         └────────────────────┘   │    ■  [ 15 ] Consultar ( Desafios de Insígnia ).                       │
+                                                  │    ■  [ 16 ] Consultar ( Desafios Feitos de Insígnia ).                │
+                                                  │                                                                        │
+                                                  ├────────────────────────────────────────────────────────────────────────┤
+                         ┌────────────────────┐   │                                                                        │
+                         │  [ DISTINTIVOS ]   │   │    ■  [ 17 ] Consultar ( Distintivos ).                                │
+                         └────────────────────┘   │    ■  [ 18 ] Consultar ( Desafios de Distintivo ).                     │
+                                                  │    ■  [ 19 ] Consultar ( Desafios Feitos de Distintivo ).              │
+                                                  │                                                                        │
+                                                  ├────────────────────────────────────────────────────────────────────────┤
+                         ┌────────────────────┐   │                                                                        │
+                         │     [ SAÚDE ]      │   │    ■  [ 20 ] Consultar ( Tipos Sanguíneos ).                           │
+                         └────────────────────┘   │    ■  [ 21 ] Consultar ( Problemas de Saúde ).                         │
+                                                  │    ■  [ 22 ] Consultar ( Saúde dos Jovens ).                           │
+                                                  │                                                                        │
+                                                  ├────────────────────────────────────────────────────────────────────────┤
+                         ┌────────────────────┐   │                                                                        │
+                         │    [ PÁGINAS ]     │   │    ■  [ 0 ] Voltar ao ( Menu Principal ).                              │
+                         └────────────────────┘   │                                                                        │
+                                                  └────────────────────────────────────────────────────────────────────────┘
+    """),
+
 
     JOVEM_UPDATE("""
                                              ┌───────────────────────────────────────────────────────────────────┐
@@ -88,17 +113,34 @@ public enum Menus {
                      │    [ OPÇÕES ]     │   │                                                                   │
                      └───────────────────┘   │    ■  [ 1 ] Atualizar ( Nome ) de Jovem.                          │
                                              │    ■  [ 2 ] Atualizar ( Data de Nascimento ) de Jovem.            │
-                                             │    ■  [ 3 ] Atualizar ( Email ) de Jovem.                         │
-                                             │    ■  [ 4 ] Atualizar ( Telefone ) de Jovem.                      │
-                                             │    ■  [ 5 ] Atualizar ( Tipo Sanguíneo ) de Jovem.                │
-                                             │    ■  [ 6 ] Atualizar ( Responsável ) de Jovem.                   │
+                                             │    ■  [ 3 ] Atualizar ( Tipo Sanguíneo ) de Jovem.                │
+                                             │    ■  [ 4 ] Atualizar ( Responsável ) de Jovem.                   │
+                                             │    ■  [ 5 ] Adicionar novo ( Responsável ) à Jovem.               │
+                                             │    ■  [ 6 ] Atualizar ( Problema de Saúde ) de Jovem.             │
+                                             │    ■  [ 7 ] Adicionar novo ( Problema de Saúde ) à Jovem.         │
                                              │                                                                   │
                      ┌───────────────────┐   ├───────────────────────────────────────────────────────────────────┤
                      │    [ PÁGINAS ]    │   │                                                                   │
-                     └───────────────────┘   │    ■  [ 7 ] Selecionar outro ( Jovem ) para editar.               │
+                     └───────────────────┘   │    ■  [ 8 ] Selecionar outro ( Jovem ) para editar.               │
                                              │    ■  [ 0 ] Voltar ao ( Menu Principal ).                         │
                                              │                                                                   │
                                              └───────────────────────────────────────────────────────────────────┘
+            """),
+
+    SAUDE_UPDATE("""
+                                             ┌────────────────────────────────────────────────────────────────────┐
+                                             │              [ ATUALIZAR DADOS DE SAÚDE DE UM JOVEM ]              │
+                     ┌───────────────────┐   ├────────────────────────────────────────────────────────────────────┤
+                     │    [ OPÇÕES ]     │   │                                                                    │
+                     └───────────────────┘   │    ■  [ 1 ] Atualizar ( Problema de Saúde ) de Jovem.              │
+                                             │    ■  [ 2 ] Atualizar ( Observações ) de Problema de Saúde.        │
+                                             │                                                                    │
+                     ┌───────────────────┐   ├────────────────────────────────────────────────────────────────────┤
+                     │    [ PÁGINAS ]    │   │                                                                    │
+                     └───────────────────┘   │    ■  [ 3 ] Selecionar outra ( Saúde ) para editar.                │
+                                             │    ■  [ 0 ] Voltar ao ( Menu Principal ).                          │
+                                             │                                                                    │
+                                             └────────────────────────────────────────────────────────────────────┘
             """),
 
     INPUT("> ");

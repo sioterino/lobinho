@@ -25,7 +25,7 @@ public class DesafioDistintivoController {
         }
 
         Table.TableBuilder table = Table.createTable();
-        table.setTitle("DISTINTIVOS");
+        table.setTitle("DESAFIOS DE DISTINTIVOS");
         table.addColumn("ID", 5);
         table.addColumn("Descrição", 35);
         table.addColumn("Distintivo", 15);
