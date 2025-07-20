@@ -3,6 +3,7 @@ package ads.bcd.sofia;
 
 import ads.bcd.sofia.controller.pessoa.JovemController;
 import ads.bcd.sofia.controller.progressao.especialidade.DesafioEspecialidadeFeitoController;
+import ads.bcd.sofia.controller.progressao.insignia.DesafioInsigniaFeitoController;
 import ads.bcd.sofia.utils.Input;
 import ads.bcd.sofia.utils.enums.Menus;
 import lombok.AllArgsConstructor;
@@ -19,6 +20,7 @@ public class App {
 
     private JovemController jovemController;
     private DesafioEspecialidadeFeitoController desafioEspecialidadeFeitoController;
+    private DesafioInsigniaFeitoController desafioInsigniaFeitoController;
 
     public void landingPage() {
         System.out.println(Menus.HELLO);
@@ -37,7 +39,10 @@ public class App {
                 case 2 -> jovemController.update();
                 case 3 -> jovemController.printAll();
                 case 4 -> desafioEspecialidadeFeitoController.create();
-                case 5 -> System.out.println("Registrar ( Insígnia de Interesse ) para Jovem.");
+                case 5 -> {
+                    desafioInsigniaFeitoController.printAll();
+                    desafioInsigniaFeitoController.create();
+                }
                 case 6 -> System.out.println("Registrar ( Distintivo de Progressão ) para Jovem.");
                 case 7 -> System.out.println("Registrar ( Participação em Atividade ).");
                 case 8 -> logMenu();

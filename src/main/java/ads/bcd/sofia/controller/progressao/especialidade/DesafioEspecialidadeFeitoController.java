@@ -68,7 +68,7 @@ public class DesafioEspecialidadeFeitoController {
         def.setDesafioEspecialidade(desafio);
         System.out.println("Você selecionou: " + desafio.getNome() + ".");
 
-        System.out.print("Data de conslusão (yyyy-MM-dd)");
+        System.out.print("Data de conslusão (yyyy-MM-dd): ");
         def.setData(input.getDate());
 
         service.save(def);

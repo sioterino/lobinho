@@ -3,7 +3,6 @@ package ads.bcd.sofia.controller.progressao.especialidade;
 import ads.bcd.sofia.model.progressao.especialidade.DesafioEspecialidade;
 import ads.bcd.sofia.service.progressao.especialidade.DesafioEspecialidadeService;
 import ads.bcd.sofia.utils.Table;
-import com.fasterxml.jackson.annotation.OptBoolean;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 
@@ -44,6 +43,5 @@ public class DesafioEspecialidadeController {
     public int size() {
         return service.findAll().size();
     }
-
 
 }

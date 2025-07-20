@@ -89,19 +89,6 @@ CREATE TABLE IF NOT EXISTS sofiadb.Insignia (
     PRIMARY KEY (idInsignia)
 );
 
-CREATE TABLE IF NOT EXISTS sofiadb.Desafio (
-	idDesafio INT NOT NULL AUTO_INCREMENT,
-	nome VARCHAR(255) NOT NULL,
-    idInsignia INT,
-
-    PRIMARY KEY (idDesafio),
-    INDEX idx_idInsignia (idInsignia),
-
-    CONSTRAINT fk_Desafio_Insignia FOREIGN KEY (idInsignia)
-    REFERENCES sofiadb.Insignia (idInsignia)
-    ON DELETE SET NULL ON UPDATE CASCADE
-);
-
 CREATE TABLE IF NOT EXISTS sofiadb.DesafioInsignia (
 	idDesafioInsignia INT NOT NULL AUTO_INCREMENT,
 	nome VARCHAR(255) NOT NULL,
